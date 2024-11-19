@@ -1,10 +1,8 @@
 # Aplicativo de Gerenciamento de Ecommerce
+> Projeto final da disciplina **React Native** da formação em Residência TIC no Serratec.
 
 <img src="https://github.com/user-attachments/assets/12c77f6f-e1a8-421e-a6ba-e593bddf702b" alt="Logo Ebook" width="500" height="auto">
 
-
-
-> Projeto final da disciplina **React Native** da formação em Residência TIC no Serratec.
 
 ## Descrição do Projeto
 Este aplicativo foi desenvolvido para gerenciar o catálogo de um e-commerce de venda de livros, oferecendo uma experiência prática e intuitiva para os funcionários da loja. Com ele, é possível:

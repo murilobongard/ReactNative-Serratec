@@ -13,8 +13,36 @@ Este aplicativo foi desenvolvido para gerenciar o catálogo de um e-commerce de 
   
 O app foi projetado para otimizar o tempo e aumentar a eficiência no gerenciamento do acervo, proporcionando uma solução simples e funcional para a equipe da loja.
 
-## Observações
+## Requisitos do trabalho
 
+- Página de Login - Só é possível acessar o aplicativo com login e senha corretos.
+- Pelos menos 2 tipos de Navegação.
+- Página para exibir os produtos utilizando flatlist.
+- Pelo menos um filtro de produtos.
+- Página com detalhes do produto selecionado.
+- Gerenciamento do produto - CRUD com Axios, com validação dos inputs e feedback visual de erro.
+- Loading em todas as interações assíncronas, mensagens de confirmação e de operações realizadas com sucesso.
+- Página Contendo os Integrantes do Grupo.
+
+## Como Executar este Projeto
+_ **Pré-requisitos**
+Antes de iniciar, é necessário garantir que você tenha os seguintes itens instalados no seu sistema:
+
+1. Node.js (versão 14 ou superior)
+2. Expo CLI
+3. Android Studio (para emular dispositivos Android) ou um dispositivo físico com modo desenvolvedor ativado (expo Go)
+4. Editor de Código (como VS Code)
+5. Git (para clonar o repositório)
+
+_ **Passo a passo**
+1. Clonar o repositório
+``https://github.com/murilobongard/ReactNative-Serratec.git``
+2. Acessar a pasta do projeto
+``cd <o_nome_da_pasta>``
+3. Instale as dependências
+``npm install``
+4. Inicie o servidor de desenvolvimento
+``npx expo start``
 
 ## Equipe de Desenvolvimento
 

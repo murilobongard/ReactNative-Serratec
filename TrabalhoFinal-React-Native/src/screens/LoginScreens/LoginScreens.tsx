@@ -17,31 +17,41 @@ const LoginScreen = () => {
   const [email, setEmail] = useState<string>("");
   const [senha, setSenha] = useState<string>("");
   const navigation = useNavigation<NavigationProps>();
-
-  const ValidaEmailSenha = [
-    { email: "Murilo@gmail.com", senha: "Senha1234" },
-    { email: "Isabella@gmail.com", senha: "1234senha" },
-  ];
-
-  const handleLogin = () => {
+  const URL = "https://673cede34db5a341d83372b0.mockapi.io/api/cadastro";
+  const Login = async () => {
     if (!email || !senha) {
       Alert.alert("Erro", "Por favor, preencha todos os campos.");
       return;
     }
-    const usuarioValido = ValidaEmailSenha.find(
-      (credencial) => credencial.email === email && credencial.senha === senha
-    );
-    if (usuarioValido) {
-      Alert.alert("Sucesso", `Seja bem-vindo, ${email}!`);
-    } else {
-      Alert.alert("Erro", "E-mail ou senha inválidos.");
+
+    try {
+      const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, senha }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        Alert.alert("Sucesso", `Bem-vindo, ${email}!`);
+        navigation.navigate("Home");
+      } else {
+        Alert.alert("Erro", data.message || "Credenciais inválidas.");
+      }
+    } catch (error) {
+      Alert.alert(
+        "Erro",
+        "Ocorreu um erro ao tentar fazer login. Tente novamente."
+      );
     }
   };
-
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>Bem-vindo</Text>
-      <Text style={styles.subtitle}>Faça login para continuar</Text>
+      <Text style={styles.subTitulo}>Faça login para continuar</Text>
       <TextInput
         style={styles.input}
         placeholder="Digite seu e-mail"
@@ -58,7 +68,7 @@ const LoginScreen = () => {
         value={senha}
         onChangeText={setSenha}
       />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      <TouchableOpacity style={styles.button} onPress={Login}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate("Cadastro")}>
@@ -86,7 +96,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
   },
-  subtitle: {
+  subTitulo: {
     fontSize: 18,
     color: "#DDD",
     marginBottom: 20,

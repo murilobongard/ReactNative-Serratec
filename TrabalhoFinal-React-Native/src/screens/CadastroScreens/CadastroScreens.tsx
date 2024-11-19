@@ -1,76 +1,72 @@
 import React, { useState } from "react";
 import {
   View,
-  Text,
   TextInput,
-  TouchableOpacity,
+  Text,
   StyleSheet,
-  Alert,
+  TouchableOpacity,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StackParamList } from "../../types/navigation";
 
-type NavigationProps = NativeStackNavigationProp<StackParamList, "Cadastro">;
+const SignupScreen = () => {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [message, setMessage] = useState("");
 
-const CadastroScreens = () => {
-  const [nome, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [senha, setPassword] = useState<string>("");
-  const navigation = useNavigation<NavigationProps>();
+  const URL = "https://673cede34db5a341d83372b0.mockapi.io/api/cadastro";
 
-  const handleRegister = () => {
-    if (!nome || !email || !senha) {
-      Alert.alert("Erro", "Por favor, preencha todos os campos.");
-      return;
+  const Cadastro = async () => {
+    const userData = { nome, email, senha };
+
+    try {
+      const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (response.ok) {
+        setMessage("Cadastro realizado com sucesso!");
+      } else {
+        setMessage("Erro ao cadastrar. Verifique os dados.");
+      }
+    } catch (error) {
+      setMessage("Erro na comunicação com o servidor.");
     }
-
-    Alert.alert("Sucesso", `Cadastro realizado para: ${nome}`);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Criar Conta</Text>
-      <Text style={styles.subtitulo}>Cadastre-se para começar</Text>
       <TextInput
         style={styles.input}
-        placeholder="Digite seu nome"
-        placeholderTextColor="#B0AFC6"
+        placeholder="Nome"
         value={nome}
-        onChangeText={setName}
+        onChangeText={setNome}
       />
       <TextInput
         style={styles.input}
-        placeholder="Digite seu e-mail"
-        placeholderTextColor="#B0AFC6"
-        keyboardType="email-address"
+        placeholder="Email"
         value={email}
         onChangeText={setEmail}
+        keyboardType="email-address"
       />
       <TextInput
         style={styles.input}
-        placeholder="Digite sua senha"
-        placeholderTextColor="#B0AFC6"
-        secureTextEntry
+        placeholder="Senha"
         value={senha}
-        onChangeText={setPassword}
+        onChangeText={setSenha}
+        secureTextEntry
       />
-      <TouchableOpacity style={styles.button} onPress={handleRegister}>
+      <TouchableOpacity style={styles.button} onPress={Cadastro}>
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
 
-      {/* Botão Voltar */}
-      <TouchableOpacity
-        style={[styles.button, { backgroundColor: "#8A2BE2" }]} // Diferenciar estilo
-        onPress={() => navigation.navigate("Login")}
-      >
-        <Text style={styles.buttonText}>Voltar</Text>
-      </TouchableOpacity>
+      {message ? <Text style={styles.message}>{message}</Text> : null}
     </View>
   );
 };
-
-export default CadastroScreens;
 
 const styles = StyleSheet.create({
   container: {
@@ -79,17 +75,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
-  },
-  titulo: {
-    fontSize: 32,
-    color: "#FFF",
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  subtitulo: {
-    fontSize: 18,
-    color: "#DDD",
-    marginBottom: 20,
   },
   input: {
     width: "100%",
@@ -101,6 +86,7 @@ const styles = StyleSheet.create({
     color: "#333",
     marginBottom: 15,
   },
+  message: { marginTop: 10, color: "green" },
   button: {
     width: "100%",
     height: 50,
@@ -108,7 +94,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 10,
   },
   buttonText: {
     fontSize: 18,
@@ -116,3 +101,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
+
+export default SignupScreen;

@@ -1,10 +1,9 @@
-import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LoginScreen from "../screens/LoginScreens";
-import CadastroScreens from "../screens/CadastroScreens";
-import { RootStackParamList } from "./navigation";
+import LoginScreen from "../screens/LoginScreens/LoginScreens";
+import CadastroScreens from "../screens/CadastroScreens/CadastroScreens";
+import { StackParamList } from "./navigation";
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<StackParamList>();
 
 const AppNavigator = () => {
   return (

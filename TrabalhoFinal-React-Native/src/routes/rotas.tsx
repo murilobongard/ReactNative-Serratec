@@ -8,14 +8,14 @@ const { Navigator, Screen } = createNativeStackNavigator<StackParamList>();
 export const Rotas = () => {
   return (
     <Navigator>
+      <Screen name="Login" component={LoginScreens} />
       <Screen
         name="Cadastro"
         component={CadastroScreens}
         options={{
-          title: "Gerenciador de Tarefas",
+          title: "Cadastro de Funcionarios",
         }}
       />
-      <Screen name="Login" component={LoginScreens} />
     </Navigator>
   );
 };

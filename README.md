@@ -1,6 +1,7 @@
 # Aplicativo de Gerenciamento de Ecommerce
 
-<img src="https://github.com/user-attachments/assets/12c77f6f-e1a8-421e-a6ba-e593bddf702b" alt="Logo Ebook" width="300" height="auto">
+<img src="https://github.com/user-attachments/assets/12c77f6f-e1a8-421e-a6ba-e593bddf702b" alt="Logo Ebook" width="500" height="auto">
+
 
 
 > Projeto final da disciplina **React Native** da formação em Residência TIC no Serratec.

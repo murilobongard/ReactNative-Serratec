@@ -1,10 +1,10 @@
-# Aplicativo de Gerenciamento de Ecommerce
+# ✨ Aplicativo de Gerenciamento de Ecommerce ✨
 > Projeto final da disciplina **React Native** da formação em Residência TIC no Serratec.
 
 <img src="https://github.com/user-attachments/assets/12c77f6f-e1a8-421e-a6ba-e593bddf702b" alt="Logo Ebook" width="500" height="auto">
 
 
-## Descrição do Projeto
+## Descrição do Projeto 📖
 Este aplicativo foi desenvolvido para gerenciar o catálogo de um e-commerce de venda de livros, oferecendo uma experiência prática e intuitiva para os funcionários da loja. Com ele, é possível:
 
 * Acessar rapidamente o inventário completo de livros disponíveis.
@@ -24,7 +24,7 @@ O app foi projetado para otimizar o tempo e aumentar a eficiência no gerenciame
 - Loading em todas as interações assíncronas, mensagens de confirmação e de operações realizadas com sucesso.
 - Página Contendo os Integrantes do Grupo.
 
-## Como Executar este Projeto
+## Como Executar este Projeto 🖥️
 _ **Pré-requisitos**
 Antes de iniciar, é necessário garantir que você tenha os seguintes itens instalados no seu sistema:
 
@@ -44,7 +44,7 @@ _ **Passo a passo**
 4. Inicie o servidor de desenvolvimento
 ``npx expo start``
 
-## Equipe de Desenvolvimento
+## Equipe de Desenvolvimento 🖧
 
 Este projeto foi desenvolvido pelo Grupo 2 da Turma 22 (Nova Friburgo/Teresópolis) do Serratec 2024.2 com os seguintes integrantes:
 

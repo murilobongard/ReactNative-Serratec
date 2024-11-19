@@ -7,11 +7,17 @@ import {
   StyleSheet,
   Alert,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { StackParamList } from "../../types/navigation";
+
+type NavigationProps = NativeStackNavigationProp<StackParamList, "Cadastro">;
 
 const CadastroScreens = () => {
   const [nome, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [senha, setPassword] = useState<string>("");
+  const navigation = useNavigation<NavigationProps>();
 
   const handleRegister = () => {
     if (!nome || !email || !senha) {
@@ -51,6 +57,14 @@ const CadastroScreens = () => {
       />
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
         <Text style={styles.buttonText}>Cadastrar</Text>
+      </TouchableOpacity>
+
+      {/* Botão Voltar */}
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: "#8A2BE2" }]} // Diferenciar estilo
+        onPress={() => navigation.navigate("Login")}
+      >
+        <Text style={styles.buttonText}>Voltar</Text>
       </TouchableOpacity>
     </View>
   );
@@ -94,6 +108,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 10,
   },
   buttonText: {
     fontSize: 18,

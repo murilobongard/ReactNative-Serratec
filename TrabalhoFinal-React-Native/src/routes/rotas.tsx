@@ -13,7 +13,6 @@ export const Rotas = () => {
         component={CadastroScreens}
         options={{
           title: "Gerenciador de Tarefas",
-          //   headerShown: false,
         }}
       />
       <Screen name="Login" component={LoginScreens} />

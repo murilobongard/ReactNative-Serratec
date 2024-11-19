@@ -15,16 +15,27 @@ type NavigationProps = NativeStackNavigationProp<StackParamList, "Login">;
 
 const LoginScreen = () => {
   const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [senha, setSenha] = useState<string>("");
   const navigation = useNavigation<NavigationProps>();
 
+  const ValidaEmailSenha = [
+    { email: "Murilo@gmail.com", senha: "Senha1234" },
+    { email: "Isabella@gmail.com", senha: "1234senha" },
+  ];
+
   const handleLogin = () => {
-    if (!email || !password) {
+    if (!email || !senha) {
       Alert.alert("Erro", "Por favor, preencha todos os campos.");
       return;
     }
-
-    Alert.alert("Sucesso", `Bem-vindo, ${email}!`);
+    const usuarioValido = ValidaEmailSenha.find(
+      (credencial) => credencial.email === email && credencial.senha === senha
+    );
+    if (usuarioValido) {
+      Alert.alert("Sucesso", `Seja bem-vindo, ${email}!`);
+    } else {
+      Alert.alert("Erro", "E-mail ou senha inválidos.");
+    }
   };
 
   return (
@@ -44,8 +55,8 @@ const LoginScreen = () => {
         placeholder="Digite sua senha"
         placeholderTextColor="#B0AFC6"
         secureTextEntry
-        value={password}
-        onChangeText={setPassword}
+        value={senha}
+        onChangeText={setSenha}
       />
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Entrar</Text>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
+// npm install react-native-app-intro-slider
 import AppIntroSlider from "react-native-app-intro-slider";
 
 const slides = [

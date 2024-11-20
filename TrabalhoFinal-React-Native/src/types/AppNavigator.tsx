@@ -1,10 +1,12 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "../screens/LoginScreens/LoginScreens";
+import HomeScreen from "../screens/HomeScreens/HomeScreens";
 import CadastroScreens from "../screens/CadastroScreens/CadastroScreens";
 import IntermediariaScreen from "../screens/IntermediariaScreens/IntermediariaScreens";
 import GerenciamentoLivrosScreen from "../screens/GerenciamentoLivroScreens/GerenciamentoLivrosScreens";
 import { StackParamList } from "./navigation";
+// import { Header } from "react-native/Libraries/NewAppScreen";
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
@@ -17,10 +19,16 @@ const AppNavigator = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
         name="Cadastro"
         component={CadastroScreens}
         options={{ headerShown: false }}
       />
+
       <Stack.Screen
         name="Intermediaria"
         component={IntermediariaScreen}

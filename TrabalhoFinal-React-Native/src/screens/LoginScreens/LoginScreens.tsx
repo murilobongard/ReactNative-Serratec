@@ -10,13 +10,21 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamList } from "../../types/navigation";
+import axios from "axios";
 
 type NavigationProps = NativeStackNavigationProp<StackParamList>;
+
+interface User {
+  email: string;
+  senha: string;
+  nome?: string;
+}
 
 const LoginScreen = () => {
   const [email, setEmail] = useState<string>("");
   const [senha, setSenha] = useState<string>("");
   const navigation = useNavigation<NavigationProps>();
+
   const URL = "https://673cede34db5a341d83372b0.mockapi.io/api/cadastro";
 
   const Login = async () => {
@@ -26,30 +34,22 @@ const LoginScreen = () => {
     }
 
     try {
-      const response = await fetch(URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, senha }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        Alert.alert("Sucesso", `Bem-vindo, ${email}!`);
-        navigation.navigate("Intermediaria");
+      const response = await axios.get<User[]>(URL);
+      const users = response.data;
+      const user = users.find(
+        (user) => user.email === email && user.senha === senha
+      );
+      if (user) {
+        Alert.alert("Sucesso", `Bem-vindo, ${user.nome || email}!`);
+        navigation.navigate("Home");
       } else {
-        Alert.alert("Erro", data.message || "Credenciais inválidas.");
+        Alert.alert("Erro", "Email ou senha incorretos.");
       }
     } catch (error) {
-      Alert.alert(
-        "Erro",
-        "Ocorreu um erro ao tentar fazer login. Tente novamente."
-      );
+      console.error(error);
+      Alert.alert("Erro", "Ocorreu um problema ao verificar as credenciais.");
     }
   };
-
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>Bem-vindo</Text>
@@ -59,6 +59,7 @@ const LoginScreen = () => {
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
+        keyboardType="email-address"
       />
       <TextInput
         style={styles.input}
@@ -71,12 +72,13 @@ const LoginScreen = () => {
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate("Cadastro")}>
-        <Text style={styles.subTitulo}>Não tem uma conta? Cadastre-se</Text>
+        <Text style={{ color: "#FFF", marginTop: 20 }}>
+          Não tem uma conta? Cadastre-se
+        </Text>
       </TouchableOpacity>
     </View>
   );
 };
-
 export default LoginScreen;
 
 const styles = StyleSheet.create({

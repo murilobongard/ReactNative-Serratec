@@ -23,8 +23,7 @@ const data = [
   { title: "livro19" },
   { title: "livro20" },
 ];
-
-export function HomeScreen() {
+const HomeScreen = () => {
   return (
     <View style={{ flex: 1, marginTop: 20 }}>
       <FlatList
@@ -96,4 +95,5 @@ export function HomeScreen() {
       />
     </View>
   );
-}
+};
+export default HomeScreen;

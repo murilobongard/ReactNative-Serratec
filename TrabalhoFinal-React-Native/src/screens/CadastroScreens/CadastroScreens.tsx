@@ -6,8 +6,9 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import axios from "axios";
 
-const SignupScreen = () => {
+const CadastroScreen = () => {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -19,21 +20,19 @@ const SignupScreen = () => {
     const userData = { nome, email, senha };
 
     try {
-      const response = await fetch(URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
+      const response = await axios.post(URL, userData);
 
-      if (response.ok) {
+      if (response.status === 201) {
         setMessage("Cadastro realizado com sucesso!");
       } else {
         setMessage("Erro ao cadastrar. Verifique os dados.");
       }
-    } catch (error) {
-      setMessage("Erro na comunicação com o servidor.");
+    } catch (error: any) {
+      if (error.response) {
+        setMessage(error.response.data.message || "Erro no cadastro.");
+      } else {
+        setMessage("Erro na comunicação com o servidor.");
+      }
     }
   };
 
@@ -115,4 +114,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignupScreen;
+export default CadastroScreen;

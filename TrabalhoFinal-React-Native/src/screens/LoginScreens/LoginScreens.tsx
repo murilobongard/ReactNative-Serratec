@@ -28,7 +28,8 @@ const LoginScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View
+   style={styles.container}>
       <Text style={styles.titulo}>Bem-vindo</Text>
       <Text style={styles.subtitle}>Faça login para continuar</Text>
       <TextInput

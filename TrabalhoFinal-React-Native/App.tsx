@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { Rotas } from "./src/Routes/rotas";
+import { Rotas } from "./src/routes/rotas";
 
 const App = () => {
   return (

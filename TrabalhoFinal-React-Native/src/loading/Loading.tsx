@@ -10,7 +10,7 @@ export const Loading:React.FC<LoadingProps> = ({visible}) =>{
 
     return(
         <View style={styles.container}>
-        <ActivityIndicator size="large" color="white" />
+        <ActivityIndicator size="large" />
         </View>
        
 );
@@ -21,7 +21,7 @@ container:{
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor:'rgba(0, 0, 0, 0.5)',
+    //backgroundColor:'rgba(0, 0, 0, 0.5)',
 }
     
 })

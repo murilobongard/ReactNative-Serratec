@@ -11,13 +11,14 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamList } from "../../types/navigation";
 
-type NavigationProps = NativeStackNavigationProp<StackParamList, "Login">;
+type NavigationProps = NativeStackNavigationProp<StackParamList>;
 
 const LoginScreen = () => {
   const [email, setEmail] = useState<string>("");
   const [senha, setSenha] = useState<string>("");
   const navigation = useNavigation<NavigationProps>();
   const URL = "https://673cede34db5a341d83372b0.mockapi.io/api/cadastro";
+
   const Login = async () => {
     if (!email || !senha) {
       Alert.alert("Erro", "Por favor, preencha todos os campos.");
@@ -37,7 +38,7 @@ const LoginScreen = () => {
 
       if (response.ok) {
         Alert.alert("Sucesso", `Bem-vindo, ${email}!`);
-        navigation.navigate("Home");
+        navigation.navigate("Intermediaria");
       } else {
         Alert.alert("Erro", data.message || "Credenciais inválidas.");
       }
@@ -48,33 +49,29 @@ const LoginScreen = () => {
       );
     }
   };
+
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>Bem-vindo</Text>
       <Text style={styles.subTitulo}>Faça login para continuar</Text>
       <TextInput
         style={styles.input}
-        placeholder="Digite seu e-mail"
-        placeholderTextColor="#B0AFC6"
-        keyboardType="email-address"
+        placeholder="Email"
         value={email}
         onChangeText={setEmail}
       />
       <TextInput
         style={styles.input}
-        placeholder="Digite sua senha"
-        placeholderTextColor="#B0AFC6"
-        secureTextEntry
+        placeholder="Senha"
         value={senha}
         onChangeText={setSenha}
+        secureTextEntry
       />
       <TouchableOpacity style={styles.button} onPress={Login}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate("Cadastro")}>
-        <Text style={{ color: "#FFF", marginTop: 20 }}>
-          Não tem uma conta? Cadastre-se
-        </Text>
+        <Text style={styles.subTitulo}>Não tem uma conta? Cadastre-se</Text>
       </TouchableOpacity>
     </View>
   );

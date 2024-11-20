@@ -1,21 +1,20 @@
+import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CadastroScreens from "../screens/CadastroScreens/CadastroScreens";
-import { StackParamList } from "../types/navigation";
 import LoginScreens from "../screens/LoginScreens/LoginScreens";
+import IntermediariaScreen from "../screens/IntermediariaScreens/IntermediariaScreens";
+import GerenciamentoLivrosScreen from "../screens/GerenciamentoLivroScreens/GerenciamentoLivrosScreens";
+import { StackParamList } from "../types/navigation";
 
-const { Navigator, Screen } = createNativeStackNavigator<StackParamList>();
+const Stack = createNativeStackNavigator<StackParamList>();
 
 export const Rotas = () => {
   return (
-    <Navigator>
-      <Screen name="Login" component={LoginScreens} />
-      <Screen
-        name="Cadastro"
-        component={CadastroScreens}
-        options={{
-          title: "Cadastro de Funcionarios",
-        }}
-      />
-    </Navigator>
+    <Stack.Navigator>
+      <Stack.Screen name="Login" component={LoginScreens} />
+      <Stack.Screen name="Cadastro" component={CadastroScreens} />
+      <Stack.Screen name="Intermediaria" component={IntermediariaScreen} />
+      <Stack.Screen name="GerenciamentoLivros" component={GerenciamentoLivrosScreen} />
+    </Stack.Navigator>
   );
 };

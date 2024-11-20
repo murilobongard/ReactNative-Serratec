@@ -39,6 +39,8 @@ const SignupScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.titulo}>Cadastre-se</Text>
+      <Text style={styles.subTitulo}>Crie sua conta para continuar</Text>
       <TextInput
         style={styles.input}
         placeholder="Nome"
@@ -75,6 +77,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
+  },
+  titulo: {
+    fontSize: 32,
+    color: "#FFF",
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  subTitulo: {
+    fontSize: 18,
+    color: "#DDD",
+    marginBottom: 20,
   },
   input: {
     width: "100%",

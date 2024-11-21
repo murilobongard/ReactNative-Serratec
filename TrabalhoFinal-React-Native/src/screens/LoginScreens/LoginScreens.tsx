@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
+  Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -52,6 +53,7 @@ const LoginScreen = () => {
   };
   return (
     <View style={styles.container}>
+      <Image source={require('../../../assets/1.png')} style={styles.image}/>
       <Text style={styles.titulo}>Bem-vindo</Text>
       <Text style={styles.subTitulo}>Faça login para continuar</Text>
       <TextInput
@@ -88,6 +90,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
+  },
+  image:{
+    width: '100%', 
+    height: 150, 
+    resizeMode: "contain",
   },
   titulo: {
     fontSize: 32,

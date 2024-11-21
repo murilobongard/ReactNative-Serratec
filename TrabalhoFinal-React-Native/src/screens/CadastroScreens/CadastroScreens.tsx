@@ -5,6 +5,7 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import axios from "axios";
 
@@ -38,6 +39,7 @@ const CadastroScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Image source={require('../../../assets/3.png')} style={styles.image}/>
       <Text style={styles.titulo}>Cadastre-se</Text>
       <Text style={styles.subTitulo}>Crie sua conta para continuar</Text>
       <TextInput
@@ -75,7 +77,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#4B0082",
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+  },
+  image: {
+    width: '100%', 
+    height: 150, 
+    resizeMode: "contain",
   },
   titulo: {
     fontSize: 32,
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   input: {
-    width: "100%",
+    width: "85%",
     height: 50,
     backgroundColor: "#FFF",
     borderRadius: 8,
@@ -100,7 +106,7 @@ const styles = StyleSheet.create({
   },
   message: { marginTop: 10, color: "green" },
   button: {
-    width: "100%",
+    width: "85%",
     height: 50,
     backgroundColor: "#8A2BE2",
     borderRadius: 8,

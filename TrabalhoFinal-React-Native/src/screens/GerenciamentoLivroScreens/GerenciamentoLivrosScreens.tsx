@@ -7,9 +7,11 @@ import {
   StyleSheet,
   Alert,
   FlatList,
+  Image,
 } from "react-native";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
+import Header from "../../components/Header";
 
 interface Livro {
   id: string;
@@ -66,23 +68,25 @@ const GerenciamentoLivrosScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Header />
+      <Image source={require('../../../assets/1.png')} style={styles.image}/>
       <Text style={styles.titulo}>Gerenciamento de Livros</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Título do Livro"
-        value={titulo}
-        onChangeText={setTitulo}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Autor do Livro"
-        value={autor}
-        onChangeText={setAutor}
-      />
-      {error ? <Text style={styles.errorText}>{error}</Text> : null}
-      <TouchableOpacity style={styles.button} onPress={handleAddLivro}>
-        <Text style={styles.buttonText}>Adicionar Livro</Text>
-      </TouchableOpacity>
+        <TextInput
+          style={styles.input}
+          placeholder="Título do Livro"
+          value={titulo}
+          onChangeText={setTitulo}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Autor do Livro"
+          value={autor}
+          onChangeText={setAutor}
+        />
+        {error ? <Text style={styles.errorText}>{error}</Text> : null}
+        <TouchableOpacity style={styles.button} onPress={handleAddLivro}>
+          <Text style={styles.buttonText}>Adicionar Livro</Text>
+        </TouchableOpacity>
       <FlatList
         data={livros}
         keyExtractor={(item) => item.id.toString()}
@@ -106,19 +110,27 @@ const GerenciamentoLivrosScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#4B0082",
+    backgroundColor: '#111111',
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+  },
+  image:{
+    marginTop: 150,
+    width: '100%', 
+    height: 150, 
+    resizeMode: "contain",
   },
   titulo: {
-    fontSize: 32,
-    color: "#FFF",
+    marginTop: 30,
+    letterSpacing:1,
+    fontSize: 25,
+    color: "#8A2BE2",
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 30,
+    alignSelf: 'center',
   },
   input: {
-    width: "100%",
+    width: "85%",
     height: 50,
     backgroundColor: "#FFF",
     borderRadius: 8,
@@ -128,7 +140,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   button: {
-    width: "100%",
+    width: "85%",
     height: 50,
     backgroundColor: "#8A2BE2",
     borderRadius: 8,

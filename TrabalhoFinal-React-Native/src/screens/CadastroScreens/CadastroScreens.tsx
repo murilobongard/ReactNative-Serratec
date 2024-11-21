@@ -6,9 +6,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  Alert,
 } from "react-native";
 import axios from "axios";
-import { Loading } from "../../loading/Loading";
+import Loading  from "../../components/loading/Loading"
 
 const CadastroScreen = () => {
   const [nome, setNome] = useState("");
@@ -20,10 +21,22 @@ const CadastroScreen = () => {
   const URL = "https://673cede34db5a341d83372b0.mockapi.io/api/cadastro";
 
   const Cadastro = async () => {
-    const userData = { nome, email, senha };
+    
+      if (!nome || !email || !senha ){
+        Alert.alert("Erro, Por favor, preencha todos os campos.");
+        return;
+      }
 
-    try {
-      const response = await axios.post(URL, userData);
+      Alert.alert(
+        "Confirmação",
+        "Você deseja realizar o cadastro?",
+
+        [{text: "Cancelar", style:"cancel"},
+        {text: "Ok", onPress:async() =>{
+            setLoading(true);
+        try {
+       const userData = {nome, email, senha};
+       const response = await axios.post(URL, userData);
 
       if (response.status === 201) {
         setMessage("Cadastro realizado com sucesso!");
@@ -37,6 +50,12 @@ const CadastroScreen = () => {
         setMessage("Erro na comunicação com o servidor.");
       }
     }
+    finally{
+      setLoading(false);
+    }
+  }}
+]
+);
   };
 
   return (
@@ -67,8 +86,8 @@ const CadastroScreen = () => {
       <TouchableOpacity style={styles.button} onPress={Cadastro}>
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
-
       {message ? <Text style={styles.message}>{message}</Text> : null}
+      <Loading visible={loading} />
     </View>
   );
 };
@@ -106,7 +125,7 @@ const styles = StyleSheet.create({
     color: "#333",
     marginBottom: 15,
   },
-  message: { marginTop: 10, color: "green" },
+  message: { marginTop: 10, color: "white" },
   button: {
     width: "85%",
     height: 50,

@@ -5,13 +5,13 @@ type LoadingProps = {
 visible: boolean;
 };
 
-export const Loading:React.FC<LoadingProps> = ({visible}) =>{
+const Loading:React.FC<LoadingProps> = ({visible}) =>{
     if (!visible) return null;
 
     return(
         <View style = {styles.overlay}>
         <View style={styles.container}>
-        <ActivityIndicator size="large" />
+        <ActivityIndicator size="large" color="#420695" />
         </View>
         </View>
 );
@@ -37,3 +37,4 @@ overlay: {
     zIndex: 1000,
 }
 })
+export default Loading;

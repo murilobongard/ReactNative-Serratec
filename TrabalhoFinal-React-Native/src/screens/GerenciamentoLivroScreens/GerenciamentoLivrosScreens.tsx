@@ -12,6 +12,8 @@ import {
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import Header from "../../components/Header";
+import Loading  from "../../components/loading/Loading"
+
 
 interface Livro {
   id: string;
@@ -24,6 +26,7 @@ const GerenciamentoLivrosScreen = () => {
   const [titulo, setTitulo] = useState<string>("");
   const [autor, setAutor] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
   const URL = "https://673f701ba9bc276ec4b891d5.mockapi.io/api/livros"; // falta o krl da api, agora temmmmmmm  porrrrraaaaaaaaaa
 
@@ -32,11 +35,14 @@ const GerenciamentoLivrosScreen = () => {
   }, []);
 
   const fetchLivros = async () => {
+    setLoading (true);
     try {
       const response = await axios.get<Livro[]>(URL);
       setLivros(response.data);
     } catch (error) {
       Alert.alert("Erro", "Não foi possível carregar os livros.");
+    }finally {
+      setLoading(false);
     }
   };
 
@@ -46,6 +52,7 @@ const GerenciamentoLivrosScreen = () => {
       return;
     }
 
+    setLoading(true);
     try {
       const response = await axios.post<Livro>(URL, { titulo, autor });
       setLivros([...livros, response.data]);
@@ -54,20 +61,24 @@ const GerenciamentoLivrosScreen = () => {
       setError(null);
     } catch (error) {
       Alert.alert("Erro", "Não foi possível adicionar o livro.");
+    } finally {setLoading (false);
     }
   };
 
   const handleDeleteLivro = async (id: string) => {
+    setLoading(true);
     try {
       await axios.delete(`${URL}/${id}`);
       setLivros(livros.filter((livro) => livro.id !== id));
     } catch (error) {
       Alert.alert("Erro", "Não foi possível deletar o livro.");
     }
+    setLoading(false);
   };
 
   return (
     <View style={styles.container}>
+      <Loading visible={loading} />
       <Header />
       <Image source={require("../../../assets/1.png")} style={styles.image} />
       <Text style={styles.titulo}>Gerenciamento de Livros</Text>

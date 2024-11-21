@@ -25,7 +25,7 @@ const GerenciamentoLivrosScreen = () => {
   const [autor, setAutor] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const navigation = useNavigation();
-  const URL = ""; // falta o krl da api
+  const URL = "https://673f701ba9bc276ec4b891d5.mockapi.io/api/livros"; // falta o krl da api, agora temmmmmmm  porrrrraaaaaaaaaa
 
   useEffect(() => {
     fetchLivros();
@@ -69,24 +69,24 @@ const GerenciamentoLivrosScreen = () => {
   return (
     <View style={styles.container}>
       <Header />
-      <Image source={require('../../../assets/1.png')} style={styles.image}/>
+      <Image source={require("../../../assets/1.png")} style={styles.image} />
       <Text style={styles.titulo}>Gerenciamento de Livros</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Título do Livro"
-          value={titulo}
-          onChangeText={setTitulo}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Autor do Livro"
-          value={autor}
-          onChangeText={setAutor}
-        />
-        {error ? <Text style={styles.errorText}>{error}</Text> : null}
-        <TouchableOpacity style={styles.button} onPress={handleAddLivro}>
-          <Text style={styles.buttonText}>Adicionar Livro</Text>
-        </TouchableOpacity>
+      <TextInput
+        style={styles.input}
+        placeholder="Título do Livro"
+        value={titulo}
+        onChangeText={setTitulo}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Autor do Livro"
+        value={autor}
+        onChangeText={setAutor}
+      />
+      {error ? <Text style={styles.errorText}>{error}</Text> : null}
+      <TouchableOpacity style={styles.button} onPress={handleAddLivro}>
+        <Text style={styles.buttonText}>Adicionar Livro</Text>
+      </TouchableOpacity>
       <FlatList
         data={livros}
         keyExtractor={(item) => item.id.toString()}
@@ -110,24 +110,24 @@ const GerenciamentoLivrosScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#111111',
+    backgroundColor: "#111111",
     alignItems: "center",
     justifyContent: "center",
   },
-  image:{
+  image: {
     marginTop: 150,
-    width: '100%', 
-    height: 150, 
+    width: "100%",
+    height: 150,
     resizeMode: "contain",
   },
   titulo: {
     marginTop: 30,
-    letterSpacing:1,
+    letterSpacing: 1,
     fontSize: 25,
     color: "#8A2BE2",
     fontWeight: "bold",
     marginBottom: 30,
-    alignSelf: 'center',
+    alignSelf: "center",
   },
   input: {
     width: "85%",

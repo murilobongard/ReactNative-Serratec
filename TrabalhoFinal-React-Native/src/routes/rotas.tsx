@@ -11,10 +11,26 @@ const Stack = createNativeStackNavigator<StackParamList>();
 export const Rotas = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreens} />
-      <Stack.Screen options={{headerShown: false}} name="Home" component={HomeScreen} />
-      <Stack.Screen options={{headerShown: false}} name="Cadastro" component={CadastroScreens} />
-      <Stack.Screen options={{headerShown: false}} name="GerenciamentoLivros" component={GerenciamentoLivrosScreen} />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="Login"
+        component={LoginScreens}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="Home"
+        component={HomeScreen}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="Cadastro"
+        component={CadastroScreens}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="GerenciamentoLivros"
+        component={GerenciamentoLivrosScreen}
+      />
     </Stack.Navigator>
   );
 };

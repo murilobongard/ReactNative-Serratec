@@ -8,12 +8,14 @@ import {
   Image,
 } from "react-native";
 import axios from "axios";
+import { Loading } from "../../loading/Loading";
 
 const CadastroScreen = () => {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false)
 
   const URL = "https://673cede34db5a341d83372b0.mockapi.io/api/cadastro";
 

@@ -9,57 +9,60 @@ import {
   Alert,
 } from "react-native";
 import axios from "axios";
-import Loading  from "../../components/Loading/loading";
+import Loading from "../../components/loading/Loading";
 
 const CadastroScreen = () => {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const URL = "https://673cede34db5a341d83372b0.mockapi.io/api/cadastro";
 
   const Cadastro = async () => {
-    
-      if (!nome || !email || !senha ){
-        Alert.alert("Erro, Por favor, preencha todos os campos.");
-        return;
-      }
-
-      Alert.alert(
-        "Confirmação",
-        "Você deseja realizar o cadastro?",
-
-        [{text: "Cancelar", style:"cancel"},
-        {text: "Ok", onPress:async() =>{
-            setLoading(true);
-        try {
-       const userData = {nome, email, senha};
-       const response = await axios.post(URL, userData);
-
-      if (response.status === 201) {
-        setMessage("Cadastro realizado com sucesso!");
-      } else {
-        setMessage("Erro ao cadastrar. Verifique os dados.");
-      }
-    } catch (error: any) {
-      if (error.response) {
-        setMessage(error.response.data.message || "Erro no cadastro.");
-      } else {
-        setMessage("Erro na comunicação com o servidor.");
-      }
-    }finally{
-      setLoading(false);
+    if (!nome || !email || !senha) {
+      Alert.alert("Erro, Por favor, preencha todos os campos.");
+      return;
     }
-  }}
-]
-);
+
+    Alert.alert(
+      "Confirmação",
+      "Você deseja realizar o cadastro?",
+
+      [
+        { text: "Cancelar", style: "cancel" },
+        {
+          text: "Ok",
+          onPress: async () => {
+            setLoading(true);
+            try {
+              const userData = { nome, email, senha };
+              const response = await axios.post(URL, userData);
+
+              if (response.status === 201) {
+                setMessage("Cadastro realizado com sucesso!");
+              } else {
+                setMessage("Erro ao cadastrar. Verifique os dados.");
+              }
+            } catch (error: any) {
+              if (error.response) {
+                setMessage(error.response.data.message || "Erro no cadastro.");
+              } else {
+                setMessage("Erro na comunicação com o servidor.");
+              }
+            } finally {
+              setLoading(false);
+            }
+          },
+        },
+      ]
+    );
   };
 
   return (
     <View style={styles.container}>
-      <Image source={require('../../../assets/3.png')} style={styles.image}/>
+      <Image source={require("../../../assets/3.png")} style={styles.image} />
       <Text style={styles.titulo}>Cadastre-se</Text>
       <Text style={styles.subTitulo}>Crie sua conta para continuar</Text>
       <TextInput
@@ -99,8 +102,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   image: {
-    width: '100%', 
-    height: 150, 
+    width: "100%",
+    height: 150,
     resizeMode: "contain",
   },
   titulo: {

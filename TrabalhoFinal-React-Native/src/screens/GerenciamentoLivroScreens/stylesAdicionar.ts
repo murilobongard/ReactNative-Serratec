@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const stylesAdicionar = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#111111",
+    backgroundColor: "#050505",
     alignItems: "center",
     justifyContent: "center",
   },

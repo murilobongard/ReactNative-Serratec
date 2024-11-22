@@ -14,7 +14,7 @@ import { livro } from "../../types/types";
 import { Alert } from "react-native";
 import { getLivro } from "../../service/LivrosService";
 //import { buscarLivro } from "../../service/LivrosService";
-import Loading from "../../components/Loading/Loading";
+import Loading  from "../../components/Loading/loading";
 
 // const data = [
 //   {

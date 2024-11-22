@@ -94,6 +94,7 @@ const GerenciarLivrosScreen: React.FC = () => {
   };
 
   return (
+  
     <View style={styles.container}>
       <Text style={styles.title}>Gerenciar Livros</Text>
       {error ? <Text style={styles.error}>{error}</Text> : null}
@@ -155,11 +156,11 @@ const GerenciarLivrosScreen: React.FC = () => {
           <View style={styles.item}>
             <Image source={{ uri: item.imagem }} style={styles.itemImage} />
             <Text style={styles.itemTitle}>{item.titulo}</Text>
-            <Text>{item.autor}</Text>
-            <Text>{item.descricao}</Text>
-            <Text>R$ {item.valor}</Text>
-            <Text>Quantidade: {item.quantidade}</Text>
-            <Text>Categoria: {item.categoria}</Text>
+            <Text style={styles.text}>{item.autor}</Text>
+            <Text style={styles.text}>{item.descricao}</Text>
+            <Text style={styles.text}>R$ {item.valor}</Text>
+            <Text style={styles.text}>Quantidade: {item.quantidade}</Text>
+            <Text style={styles.text}>Categoria: {item.categoria}</Text>
             <TouchableOpacity style={styles.editButton} onPress={() => handleEditLivro(item)}>
               <Text style={styles.buttonText}>Editar</Text>
             </TouchableOpacity>

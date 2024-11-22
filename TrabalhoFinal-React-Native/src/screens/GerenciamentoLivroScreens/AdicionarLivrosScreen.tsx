@@ -7,7 +7,7 @@ import {
   Alert,
 } from "react-native";
 import axios from "axios";
-import stylesAdicionar from "./stylesAdicionar"; // Importação do arquivo de estilos
+import stylesAdicionar from "./stylesAdicionar"; 
 import Loading  from "../../components/loading/Loading";
 
 

@@ -104,6 +104,17 @@ export const Rotas = () => {
         component={GerenciarLivrosScreen}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="Gerenciamento"
+        component={GerenciamentoScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="TimeTab"
+        component={TimeScreen}
+        options={{ headerShown: false }}
+      />
+
     </Stack.Navigator>
   );
 };

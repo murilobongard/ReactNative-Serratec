@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import axios from "axios";
 import stylesAdicionar from "./stylesAdicionar"; // Importação do arquivo de estilos
-import Loading  from "../../components/Loading/loading";
+import Loading  from "../../components/loading/Loading";
 
 
 const AdicionarLivrosScreen = () => {

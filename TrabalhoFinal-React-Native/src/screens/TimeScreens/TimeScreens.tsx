@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { Text, View, Image } from "react-native";
 // npm install react-native-app-intro-slider
 import AppIntroSlider from "react-native-app-intro-slider";
 
@@ -7,38 +7,38 @@ const slides = [
   {
     key: "1",
     title: "Andressa Jandre",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis necessitatibus saepe totam eos cum ea.",
-    //image: require("./assets/icon.png"),
+    text: "Especialista em design de interfaces intuitivas, Andressa transforma ideias em experiências visuais incríveis. Com um olhar criativo, ela garante que cada detalhe do e-commerce inspire confiança e facilidade para os leitores.",
+    image: require("../../../assets/Andressa.jpeg"),
   },
   {
     key: "2",
     title: "Brenda Barbatti",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis necessitatibus saepe totam eos cum ea.",
-    //image: require("./assets/icon.png"),
+    text: "Com uma paixão por organização e eficiência, Brenda é a mente por trás das funcionalidades de gerenciamento de estoque e controle de pedidos. Ela assegura que cada livro esteja sempre no lugar certo, na hora certa.",
+    image: require("../../../assets/Brenda.jpeg"),
   },
   {
     key: "3",
     title: "Caio Pacheco",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis necessitatibus saepe totam eos cum ea.",
-    //image: require("./assets/icon.png"),
+    text: "Entusiasta em desenvolvimento backend, Caio é quem dá vida à infraestrutura do sistema. Ele garante que o e-commerce funcione com velocidade, segurança e suporte a grandes volumes de acessos simultâneos.",
+    image: require("../../../assets/Caio.jpeg"),
   },
   {
     key: "4",
     title: "Murilo Bongard",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis necessitatibus saepe totam eos cum ea.",
-    //image: require("./assets/icon.png"),
+    text: "Especialista em dados, Murilo traz inteligência para o app. Ele analisa tendências e implementa relatórios que ajudam o administrador a tomar decisões baseadas em insights poderosos sobre vendas e clientes.",
+    image: require("../../../assets/Murilo.jpeg"),
   },
   {
     key: "5",
     title: "Luiz Fernando Francedino",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis necessitatibus saepe totam eos cum ea.",
-    //image: require("./assets/icon.png"),
+    text: "O guardião da experiência completa, Luiz lidera a integração entre frontend e backend, garantindo que cada página flua perfeitamente. Com sua paixão por código, ele transforma o e-commerce em uma ferramenta poderosa e prática.",
+    image: require("../../../assets/LindoPerfeitoMaravilhoso.jpeg"),
   },
   {
     key: "6",
     title: "Isabella Pinheiro",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis necessitatibus saepe totam eos cum ea.",
-    //image: require("./assets/icon.png"),
+    text: "Com um amor por livros e tecnologia, Isabella é a responsável pela curadoria do catálogo. Ela garante que cada obra no e-commerce seja apresentada de forma cativante e com informações precisas para os leitores.",
+    image: require("../../../assets/Isabella.jpeg"),
   },
 ];
 

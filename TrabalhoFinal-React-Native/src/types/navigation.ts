@@ -5,4 +5,5 @@ export type StackParamList = {
   Gerenciamento: undefined;
   AdicionarLivros: undefined;
   GerenciarLivros: undefined;
+  Time: undefined;
 };

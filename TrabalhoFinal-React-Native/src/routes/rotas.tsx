@@ -7,8 +7,21 @@ import GerenciamentoScreen from "../screens/GerenciamentoLivroScreens/Gerenciame
 import AdicionarLivrosScreen from "../screens/GerenciamentoLivroScreens/AdicionarLivrosScreen";
 import GerenciarLivrosScreen from "../screens/GerenciamentoLivroScreens/EditarLivrosScreen";
 import { StackParamList } from "../types/navigation";
+import { TimeScreen } from "../screens/TimeScreens/TimeScreens";
+// npm install @react-navigation/bottom-tabs
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const Stack = createNativeStackNavigator<StackParamList>();
+const Tab = createBottomTabNavigator();
+
+// OBS: TabNavigator foi criado mas não implementado
+
+/* const TabNavigator = () => (
+  <Tab.Navigator>
+    <Tab.Screen name="Login" component={LoginScreens} />
+    <Tab.Screen name="Cadastro" component={CadastroScreens} />
+  </Tab.Navigator>
+); */
 
 export const Rotas = () => {
   return (
@@ -42,6 +55,11 @@ export const Rotas = () => {
         name="GerenciarLivros"
         component={GerenciarLivrosScreen}
         options={{ title: "Gerenciar Livros", headerShown: false }}
+      />
+      <Stack.Screen
+        name="Time"
+        component={TimeScreen}
+        options={{ title: "Time", headerShown: false }}
       />
     </Stack.Navigator>
   );

@@ -8,37 +8,37 @@ const slides = [
     key: "1",
     title: "Andressa Jandre",
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis necessitatibus saepe totam eos cum ea.",
-    image: require("./assets/icon.png"),
+    //image: require("./assets/icon.png"),
   },
   {
     key: "2",
     title: "Brenda Barbatti",
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis necessitatibus saepe totam eos cum ea.",
-    image: require("./assets/icon.png"),
+    //image: require("./assets/icon.png"),
   },
   {
     key: "3",
     title: "Caio Pacheco",
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis necessitatibus saepe totam eos cum ea.",
-    image: require("./assets/icon.png"),
+    //image: require("./assets/icon.png"),
   },
   {
     key: "4",
     title: "Murilo Bongard",
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis necessitatibus saepe totam eos cum ea.",
-    image: require("./assets/icon.png"),
+    //image: require("./assets/icon.png"),
   },
   {
     key: "5",
     title: "Luiz Fernando Francedino",
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis necessitatibus saepe totam eos cum ea.",
-    image: require("./assets/icon.png"),
+    //image: require("./assets/icon.png"),
   },
   {
     key: "6",
     title: "Isabella Pinheiro",
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis necessitatibus saepe totam eos cum ea.",
-    image: require("./assets/icon.png"),
+    //image: require("./assets/icon.png"),
   },
 ];
 

@@ -5,6 +5,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#111111",
   },
+
+  input: {
+    borderWidth: 1,
+    backgroundColor: "#eee",
+    borderRadius: 4,
+    height: 40,
+    marginHorizontal: 20,
+    paddingLeft: 15,
+  },
   columnWrapper: {
     alignSelf: "center",
     gap: 2,

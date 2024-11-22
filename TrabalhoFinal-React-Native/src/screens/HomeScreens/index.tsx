@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Image,
+  TextInput,
+} from "react-native";
 import Header from "../../components/Header";
 import Hero from "../../components/Hero";
 import styles from "./styles";
 import { livro } from "../../types/types";
 import { Alert } from "react-native";
 import { getLivro } from "../../service/LivrosService";
-import { buscarLivro } from "../../service/LivrosService";
-import Loading  from "../../components/loading/Loading"
-
+//import { buscarLivro } from "../../service/LivrosService";
+import Loading from "../../components/loading/Loading";
 
 // const data = [
 //   {
@@ -40,18 +46,18 @@ const HomeScreen = () => {
   const [livro, setLivro] = useState("");
   const [loading, setLoading] = useState(true);
   const [listaLivros, setListaLivros] = useState<livro[]>([]);
+  const [originalData, setOriginalData] = useState<livro[]>([]);
 
+  // Fazer com que setOriginalData e setLivrosData recebam o mesmo array, para que a busca funcione
   const buscarLivro = async () => {
-
     setLoading(true);
     try {
       const livrosApi = await getLivro();
+      setOriginalData(livrosApi);
       setListaLivros(livrosApi);
     } catch (err) {
       Alert.alert("Erro ao achar livro");
-    }
-   
-    finally{
+    } finally {
       setLoading(false);
     }
   };
@@ -59,11 +65,21 @@ const HomeScreen = () => {
     buscarLivro();
   }, []);
 
+  function search(s: string) {
+    let arr = JSON.parse(JSON.stringify(originalData));
+    setListaLivros(listaLivros.filter((d) => d.titulo.includes(s)));
+  }
+
   return (
     <View style={styles.container}>
       <Header />
       <Hero />
       <Loading visible={loading} />
+      <TextInput
+        style={styles.input}
+        placeholder={"Busque um livro"}
+        onChangeText={(s) => search(s)}
+      />
       <FlatList
         data={listaLivros}
         numColumns={2}

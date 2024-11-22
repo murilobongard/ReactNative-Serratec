@@ -12,6 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamList } from "../../types/navigation";
 import axios from "axios";
+import CadastroScreen from "../CadastroScreens/CadastroScreens";
 
 type NavigationProps = NativeStackNavigationProp<StackParamList>;
 
@@ -51,9 +52,10 @@ const LoginScreen = () => {
       Alert.alert("Erro", "Ocorreu um problema ao verificar as credenciais.");
     }
   };
+
   return (
     <View style={styles.container}>
-      <Image source={require('../../../assets/1.png')} style={styles.image}/>
+      <Image source={require("../../../assets/1.png")} style={styles.image} />
       <Text style={styles.titulo}>Bem-vindo</Text>
       <Text style={styles.subTitulo}>Faça login para continuar</Text>
       <TextInput
@@ -91,9 +93,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 20,
   },
-  image:{
-    width: '100%', 
-    height: 150, 
+  image: {
+    width: "100%",
+    height: 150,
     resizeMode: "contain",
   },
   titulo: {

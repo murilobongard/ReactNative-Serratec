@@ -9,7 +9,7 @@ import {
   Alert,
 } from "react-native";
 import axios from "axios";
-import Loading  from "../../components/loading/Loading"
+import Loading  from "../../components/Loading/Loading"
 
 const CadastroScreen = () => {
   const [nome, setNome] = useState("");

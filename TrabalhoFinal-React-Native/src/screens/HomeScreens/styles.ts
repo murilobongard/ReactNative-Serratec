@@ -80,6 +80,54 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "white",
   },
+
+  principal: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalContainer: {
+    width: "80%",
+    backgroundColor: "#4B0082",
+    borderRadius: 10,
+    padding: 16,
+    alignItems: "center",
+  },
+  modalImagem: {
+    width: 150,
+    height: 200,
+    borderRadius: 8,
+  },
+  modalTitulo: {
+    marginTop: 16,
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#fff",
+  },
+  modalAutor: {
+    marginTop: 8,
+    fontSize: 16,
+    color: "#fff",
+  },
+  modalCategoria: {
+    marginTop: 4,
+    fontSize: 14,
+    color: "#fff",
+  },
+  modalDescricao: {
+    marginTop: 8,
+    fontSize: 14,
+    textAlign: "center",
+    color: "#fff"
+  },
+  modalPreco: {
+    marginTop: 8,
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#fff",
+  },
+
 });
 
 export default styles;

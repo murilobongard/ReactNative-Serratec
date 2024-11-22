@@ -14,18 +14,14 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 const Stack = createNativeStackNavigator<StackParamList>();
 const Tab = createBottomTabNavigator();
 
-// OBS: TabNavigator foi criado mas não implementado
-
-/* const TabNavigator = () => (
-  <Tab.Navigator>
-    <Tab.Screen name="Login" component={LoginScreens} />
-    <Tab.Screen name="Cadastro" component={CadastroScreens} />
-  </Tab.Navigator>
-); */
-
 export const Rotas = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName="Login">
+      <Stack.Screen
+        name="Login"
+        component={LoginScreens}
+        options={{ title: "Login", headerShown: false }}
+      />
       <Stack.Screen
         name="Home"
         component={HomeScreen}
@@ -35,11 +31,6 @@ export const Rotas = () => {
         name="Cadastro"
         component={CadastroScreens}
         options={{ title: "Cadastro", headerShown: false }}
-      />
-      <Stack.Screen
-        name="Login"
-        component={LoginScreens}
-        options={{ title: "Login", headerShown: false }}
       />
       <Stack.Screen
         name="Gerenciamento"

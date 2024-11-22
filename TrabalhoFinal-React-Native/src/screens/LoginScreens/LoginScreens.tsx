@@ -13,9 +13,8 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamList } from "../../types/navigation";
 import axios from "axios";
 import CadastroScreen from "../CadastroScreens/CadastroScreens";
-import styles from "./LoginStyles"
-import Loading  from "../../components/loading/Loading"; // importação Loading
-
+import styles from "./LoginStyles";
+import Loading from "../../components/loading/Loading"; // importação Loading
 
 type NavigationProps = NativeStackNavigationProp<StackParamList>;
 
@@ -29,7 +28,7 @@ const LoginScreen = () => {
   const [email, setEmail] = useState<string>("");
   const [senha, setSenha] = useState<string>("");
   const navigation = useNavigation<NavigationProps>();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const URL = "https://673cede34db5a341d83372b0.mockapi.io/api/cadastro";
 
   const Login = async () => {
@@ -56,8 +55,7 @@ const LoginScreen = () => {
       console.error(error);
       setLoading(false);
       Alert.alert("Erro", "Ocorreu um problema ao verificar as credenciais.");
-    } 
-
+    }
   };
 
   return (
@@ -92,5 +90,3 @@ const LoginScreen = () => {
   );
 };
 export default LoginScreen;
-
-

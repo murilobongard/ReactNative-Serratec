@@ -1,7 +1,7 @@
 import { livro } from "../types/types";
 import api from "./api";
 
-export const buscarLivro = async (): Promise<livro[]> => {
+export const getLivro = async (): Promise<livro[]> => {
   const { data } = await api.get<livro[]>("/livros");
   return data;
 };
@@ -12,8 +12,8 @@ export const createLivro = async (
   return data;
 };
 
-export const deleteLivro = async (id: number): Promise<void> => {
-  const { data } = await api.delete<void>("/livros/" + id);
+export const deleteLivro = async (id: number): Promise<livro> => {
+  const { data } = await api.delete<livro>("/livros/" + id);
   return data;
 };
 

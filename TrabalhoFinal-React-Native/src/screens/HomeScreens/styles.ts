@@ -3,10 +3,10 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#111111'
+    backgroundColor: "#111111",
   },
   columnWrapper: {
-    alignSelf: 'center',
+    alignSelf: "center",
     gap: 2,
     paddingHorizontal: 2,
   },
@@ -18,11 +18,11 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
-    flexDirection: "column", 
+    flexDirection: "column",
     width: 200,
     height: 300,
-    padding: 20, 
-   },
+    padding: 20,
+  },
   listHeader: {
     marginVertical: 20,
   },
@@ -33,30 +33,30 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingHorizontal: 12,
   },
-   horizontalItemContainer: {
+  horizontalItemContainer: {
     display: "flex",
-    justifyContent: "flex-start", 
+    justifyContent: "flex-start",
     alignItems: "center",
-    flexDirection: "column", 
+    flexDirection: "column",
     width: 150,
     height: 250,
-    padding: 10, 
+    padding: 10,
   },
   imageBook: {
-    width: "100%", 
-    height: "80%", 
+    width: "100%",
+    height: "80%",
     resizeMode: "contain",
   },
   titleBook: {
-    fontSize: 12, 
+    fontSize: 12,
     paddingTop: 5,
     fontWeight: "bold",
-    textAlign: "center", 
-    color: "white", 
+    textAlign: "center",
+    color: "white",
   },
-  author: {
+  autor: {
     fontSize: 10,
-    color: "white", 
+    color: "white",
     textAlign: "center",
   },
   textContainer: {
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     letterSpacing: 3,
     fontSize: 15,
-    color: 'white',
+    color: "white",
   },
 });
 

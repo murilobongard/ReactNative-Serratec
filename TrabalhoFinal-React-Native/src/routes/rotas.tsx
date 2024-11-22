@@ -3,33 +3,45 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CadastroScreens from "../screens/CadastroScreens/CadastroScreens";
 import LoginScreens from "../screens/LoginScreens/LoginScreens";
 import HomeScreen from "../screens/HomeScreens";
-import GerenciamentoLivrosScreen from "../screens/GerenciamentoLivroScreens/GerenciamentoLivrosScreens";
+import GerenciamentoScreen from "../screens/GerenciamentoLivroScreens/GerenciamentoScreen";
+import AdicionarLivrosScreen from "../screens/GerenciamentoLivroScreens/AdicionarLivrosScreen";
+import GerenciarLivrosScreen from "../screens/GerenciamentoLivroScreens/EditarLivrosScreen";
 import { StackParamList } from "../types/navigation";
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
 export const Rotas = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
-        options={{ headerShown: false }}
-        name="Login"
-        component={LoginScreens}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
         name="Home"
         component={HomeScreen}
+        options={{ title: "Home", headerShown: false }}
       />
       <Stack.Screen
-        options={{ headerShown: false }}
         name="Cadastro"
         component={CadastroScreens}
+        options={{ title: "Cadastro", headerShown: false }}
       />
       <Stack.Screen
-        options={{ headerShown: false }}
-        name="GerenciamentoLivros"
-        component={GerenciamentoLivrosScreen}
+        name="Login"
+        component={LoginScreens}
+        options={{ title: "Login", headerShown: false }}
+      />
+      <Stack.Screen
+        name="Gerenciamento"
+        component={GerenciamentoScreen}
+        options={{ title: "Gerenciamento", headerShown: false }}
+      />
+      <Stack.Screen
+        name="AdicionarLivros"
+        component={AdicionarLivrosScreen}
+        options={{ title: "Adicionar Livros", headerShown: false }}
+      />
+      <Stack.Screen
+        name="GerenciarLivros"
+        component={GerenciarLivrosScreen}
+        options={{ title: "Gerenciar Livros", headerShown: false }}
       />
     </Stack.Navigator>
   );

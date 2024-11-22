@@ -23,7 +23,7 @@ const Header: React.FC = () => {
                 onPress={() => navigation.navigate("Home")}>
                     <Text style={styles.textWhite}>Produtos</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate("GerenciamentoLivros")}>
+                <TouchableOpacity onPress={() => navigation.navigate("Gerenciamento")}>
                     <Text style={styles.textWhite}>Gerenciamento</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate("Login")}>

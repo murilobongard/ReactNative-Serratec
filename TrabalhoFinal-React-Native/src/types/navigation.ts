@@ -1,6 +1,8 @@
 export type StackParamList = {
-  Login: undefined;
-  Cadastro: undefined;
-  GerenciamentoLivros: undefined;
   Home: undefined;
+  Cadastro: undefined;
+  Login: undefined;
+  Gerenciamento: undefined;
+  AdicionarLivros: undefined;
+  GerenciarLivros: undefined;
 };

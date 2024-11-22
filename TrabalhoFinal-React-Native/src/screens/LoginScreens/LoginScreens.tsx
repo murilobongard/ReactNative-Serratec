@@ -13,6 +13,9 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamList } from "../../types/navigation";
 import axios from "axios";
 import CadastroScreen from "../CadastroScreens/CadastroScreens";
+import styles from "./LoginStyles"
+import Loading  from "../../components/Loading/loading"; // importação Loading
+
 
 type NavigationProps = NativeStackNavigationProp<StackParamList>;
 
@@ -26,7 +29,7 @@ const LoginScreen = () => {
   const [email, setEmail] = useState<string>("");
   const [senha, setSenha] = useState<string>("");
   const navigation = useNavigation<NavigationProps>();
-
+  const [loading, setLoading] = useState(false)
   const URL = "https://673cede34db5a341d83372b0.mockapi.io/api/cadastro";
 
   const Login = async () => {
@@ -34,7 +37,7 @@ const LoginScreen = () => {
       Alert.alert("Erro", "Por favor, preencha todos os campos.");
       return;
     }
-
+    setLoading(true);
     try {
       const response = await axios.get<User[]>(URL);
       const users = response.data;
@@ -42,15 +45,19 @@ const LoginScreen = () => {
         (user) => user.email === email && user.senha === senha
       );
       if (user) {
+        setLoading(false);
         Alert.alert("Sucesso", `Bem-vindo, ${user.nome || email}!`);
         navigation.navigate("Home");
       } else {
+        setLoading(false);
         Alert.alert("Erro", "Email ou senha incorretos.");
       }
     } catch (error) {
       console.error(error);
+      setLoading(false);
       Alert.alert("Erro", "Ocorreu um problema ao verificar as credenciais.");
-    }
+    } 
+
   };
 
   return (
@@ -80,56 +87,10 @@ const LoginScreen = () => {
           Não tem uma conta? Cadastre-se
         </Text>
       </TouchableOpacity>
+      <Loading visible={loading} />
     </View>
   );
 };
 export default LoginScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#4B0082",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
-  },
-  image: {
-    width: "100%",
-    height: 150,
-    resizeMode: "contain",
-  },
-  titulo: {
-    fontSize: 32,
-    color: "#FFF",
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  subTitulo: {
-    fontSize: 18,
-    color: "#DDD",
-    marginBottom: 20,
-  },
-  input: {
-    width: "100%",
-    height: 50,
-    backgroundColor: "#FFF",
-    borderRadius: 8,
-    paddingHorizontal: 15,
-    fontSize: 16,
-    color: "#333",
-    marginBottom: 15,
-  },
-  button: {
-    width: "100%",
-    height: 50,
-    backgroundColor: "#8A2BE2",
-    borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonText: {
-    fontSize: 18,
-    color: "#FFF",
-    fontWeight: "bold",
-  },
-});
+

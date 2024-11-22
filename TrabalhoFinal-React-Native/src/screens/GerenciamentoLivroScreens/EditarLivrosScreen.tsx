@@ -26,7 +26,6 @@ const GerenciarLivrosScreen: React.FC = () => {
   const [categoria, setCategoria] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false)
-
   const URL = "https://673f701ba9bc276ec4b891d5.mockapi.io/api/livros";
   
   useEffect(() => {

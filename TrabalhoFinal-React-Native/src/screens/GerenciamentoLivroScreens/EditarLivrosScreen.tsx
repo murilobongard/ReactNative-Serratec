@@ -11,7 +11,7 @@ import {
 import axios from "axios";
 import { livro } from "../../types/types";
 import styles from "./stylesEditarLivros";
-import Loading  from "../../components/Loading/loading";
+import Loading  from "../../components/loading/Loading";
 
 
 const GerenciarLivrosScreen: React.FC = () => {

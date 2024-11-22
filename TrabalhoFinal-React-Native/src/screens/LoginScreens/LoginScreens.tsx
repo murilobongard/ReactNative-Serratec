@@ -14,7 +14,7 @@ import { StackParamList } from "../../types/navigation";
 import axios from "axios";
 import CadastroScreen from "../CadastroScreens/CadastroScreens";
 import styles from "./LoginStyles"
-import Loading  from "../../components/Loading/loading"; // importação Loading
+import Loading  from "../../components/loading/Loading"; // importação Loading
 
 
 type NavigationProps = NativeStackNavigationProp<StackParamList>;

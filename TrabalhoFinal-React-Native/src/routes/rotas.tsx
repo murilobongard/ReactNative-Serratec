@@ -1,56 +1,108 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+// npm install @react-navigation/bottom-tabs
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// npm install lucide-react-native
+import { Home, Library, Users } from "lucide-react-native";
 import CadastroScreens from "../screens/CadastroScreens/CadastroScreens";
 import LoginScreens from "../screens/LoginScreens/LoginScreens";
 import HomeScreen from "../screens/HomeScreens";
 import GerenciamentoScreen from "../screens/GerenciamentoLivroScreens/GerenciamentoScreen";
 import AdicionarLivrosScreen from "../screens/GerenciamentoLivroScreens/AdicionarLivrosScreen";
 import GerenciarLivrosScreen from "../screens/GerenciamentoLivroScreens/EditarLivrosScreen";
-import { StackParamList } from "../types/navigation";
 import { TimeScreen } from "../screens/TimeScreens/TimeScreens";
-// npm install @react-navigation/bottom-tabs
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { StackParamList } from "../types/navigation";
 
 const Stack = createNativeStackNavigator<StackParamList>();
 const Tab = createBottomTabNavigator();
 
+const TabNavigator = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          paddingBottom: 5,
+          paddingTop: 5,
+          backgroundColor: "#ffffff",
+          borderTopWidth: 1,
+          borderTopColor: "#e5e5e5",
+          height: 80,
+        },
+        tabBarActiveTintColor: "#6200ee",
+        tabBarInactiveTintColor: "#757575",
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: "500",
+          marginBottom: 4,
+        },
+      }}
+    >
+      <Tab.Screen
+        name="HomeTab"
+        component={HomeScreen}
+        options={{
+          title: "Home",
+          tabBarIcon: ({ focused, color, size }) => (
+            <Home size={size} color={color} strokeWidth={focused ? 2.5 : 2} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="GerenciamentoTab"
+        component={GerenciamentoScreen}
+        options={{
+          title: "Gerenciamento",
+          tabBarIcon: ({ focused, color, size }) => (
+            <Library
+              size={size}
+              color={color}
+              strokeWidth={focused ? 2.5 : 2}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="TimeTab"
+        component={TimeScreen}
+        options={{
+          title: "Time",
+          tabBarIcon: ({ focused, color, size }) => (
+            <Users size={size} color={color} strokeWidth={focused ? 2.5 : 2} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
+
 export const Rotas = () => {
   return (
-    <Stack.Navigator initialRouteName="Login">
-      <Stack.Screen
-        name="Login"
-        component={LoginScreens}
-        options={{ title: "Login", headerShown: false }}
-      />
+    <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
         name="Home"
-        component={HomeScreen}
-        options={{ title: "Home", headerShown: false }}
+        component={TabNavigator}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="Cadastro"
         component={CadastroScreens}
-        options={{ title: "Cadastro", headerShown: false }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="Gerenciamento"
-        component={GerenciamentoScreen}
-        options={{ title: "Gerenciamento", headerShown: false }}
+        name="Login"
+        component={LoginScreens}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="AdicionarLivros"
         component={AdicionarLivrosScreen}
-        options={{ title: "Adicionar Livros", headerShown: false }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="GerenciarLivros"
         component={GerenciarLivrosScreen}
-        options={{ title: "Gerenciar Livros", headerShown: false }}
-      />
-      <Stack.Screen
-        name="Time"
-        component={TimeScreen}
-        options={{ title: "Time", headerShown: false }}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

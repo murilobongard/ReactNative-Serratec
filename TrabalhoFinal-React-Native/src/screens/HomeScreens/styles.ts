@@ -73,6 +73,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     marginBottom: 0,
+    paddingTop: 20,
+    paddingHorizontal: 10,
   },
   titleText: {
     fontWeight: "bold",
@@ -119,7 +121,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontSize: 14,
     textAlign: "center",
-    color: "#fff"
+    color: "#fff",
   },
   modalPreco: {
     marginTop: 8,
@@ -127,7 +129,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#fff",
   },
-
 });
 
 export default styles;

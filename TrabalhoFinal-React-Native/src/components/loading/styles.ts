@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         bottom: 0, 
         justifyContent: 'center', 
         alignItems: 'center', 
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fundo semi-transparente 
+        backgroundColor: 'rgba(204, 123, 244, 0.495)', // Fundo semi-transparente 
         zIndex: 1000,
     }
     })

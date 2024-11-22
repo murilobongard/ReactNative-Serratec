@@ -49,8 +49,7 @@ const CadastroScreen = () => {
       } else {
         setMessage("Erro na comunicação com o servidor.");
       }
-    }
-    finally{
+    }finally{
       setLoading(false);
     }
   }}

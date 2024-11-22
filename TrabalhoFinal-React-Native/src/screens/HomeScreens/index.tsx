@@ -8,6 +8,7 @@ import {
   TextInput,
   Modal,
   Button,
+  ScrollView
 } from "react-native";
 import Header from "../../components/Header";
 import Hero from "../../components/Hero";
@@ -20,7 +21,7 @@ import Loading from "../../components/loading/Loading";
 
 const livrosMaisVendidos = [
   {
-    titulo: "O Senhor dos AnÃ©is: A Sociedade do Anel",
+    titulo: "O Senhor dos Aneis: A Sociedade do Anel",
     autor: "J.R.R. Tolkien",
     imagem:
       "https://m.media-amazon.com/images/I/81hCVEC0ExL._AC_UF1000,1000_QL80_.jpg",
@@ -51,6 +52,7 @@ const HomeScreen = () => {
 
   const [modal, setModal] = useState(false);
   const [itemSelecionado, setItemSelecionado] = useState<livro | null>(null);
+
 
   const buscarLivro = async () => {
     setLoading(true);
@@ -95,11 +97,13 @@ const HomeScreen = () => {
       <Header />
       <Hero />
       <Loading visible={loading} />
+      <View style={styles.inputContainer}>
       <TextInput
         style={styles.input}
         placeholder={"Pesquisar"}
         onChangeText={(s) => search(s)}
       />
+      </View>
       <FlatList
         data={listaLivros}
         numColumns={2}
@@ -159,7 +163,8 @@ const HomeScreen = () => {
         >
           <View style={styles.principal}>
             <View style={styles.modalContainer}>
-              {" "}
+            <ScrollView contentContainerStyle={styles.scrollViewContent}   showsVerticalScrollIndicator={true}>
+              {/* {" "} */}
               {itemSelecionado.imagem && (
                 <Image
                   source={{ uri: itemSelecionado.imagem }}
@@ -185,6 +190,7 @@ const HomeScreen = () => {
                 <Text style={styles.modalPreco}>Preço: Não disponível</Text>
               )}
               <Button title="Fechar" onPress={fecharModalLivro} />
+              </ScrollView>
             </View>
           </View>
         </Modal>

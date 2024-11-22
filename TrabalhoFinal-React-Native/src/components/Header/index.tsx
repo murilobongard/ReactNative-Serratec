@@ -21,7 +21,6 @@ const Header: React.FC = () => {
           source={require("../../../assets/3.png")}
           style={{ width: 70, height: 90, resizeMode: "contain" }}
         />
-
         <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <Text style={styles.textWhite}>Produtos</Text>
         </TouchableOpacity>
@@ -31,9 +30,9 @@ const Header: React.FC = () => {
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Text style={styles.textWhite}>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Time")}>
+        {/* <TouchableOpacity onPress={() => navigation.navigate("Time")}>
           <Text style={styles.textWhite}>Sobre</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </LinearGradient>
   );

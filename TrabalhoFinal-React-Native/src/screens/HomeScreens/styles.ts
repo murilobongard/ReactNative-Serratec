@@ -3,16 +3,18 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#111111",
+    backgroundColor: "#1C1B1B",
   },
-
+  inputContainer:{
+    paddingTop: 20,
+    paddingLeft: 15,
+  },
   input: {
     borderWidth: 1,
-    backgroundColor: "#eee",
+    backgroundColor: "#ffffff",
     borderRadius: 4,
     height: 40,
     marginHorizontal: 20,
-    paddingLeft: 15,
   },
   columnWrapper: {
     alignSelf: "center",
@@ -82,7 +84,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "white",
   },
-
   principal: {
     flex: 1,
     backgroundColor: "rgba(0, 0, 0, 0.7)",
@@ -90,10 +91,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalContainer: {
-    width: "80%",
-    backgroundColor: "#4B0082",
+    width: "85%",
+    backgroundColor: "#1C1B1B",
     borderRadius: 10,
     padding: 16,
+  },
+  scrollViewContent:{
     alignItems: "center",
   },
   modalImagem: {
@@ -108,23 +111,24 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   modalAutor: {
-    marginTop: 8,
+    marginTop: 2,
     fontSize: 16,
     color: "#fff",
   },
   modalCategoria: {
-    marginTop: 4,
+    marginTop: 10,
     fontSize: 14,
-    color: "#fff",
+    color: "#726C6C",
   },
   modalDescricao: {
     marginTop: 8,
     fontSize: 14,
-    textAlign: "center",
+    textAlign: "justify",
     color: "#fff",
   },
   modalPreco: {
-    marginTop: 8,
+    marginTop: 2,
+    marginBottom: 10,
     fontSize: 16,
     fontWeight: "bold",
     color: "#fff",

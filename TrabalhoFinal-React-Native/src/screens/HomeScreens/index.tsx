@@ -6,6 +6,9 @@ import styles from "./styles";
 import { livro } from "../../types/types";
 import { Alert } from "react-native";
 import { getLivro } from "../../service/LivrosService";
+import { buscarLivro } from "../../service/LivrosService";
+import Loading  from "../../components/loading/Loading"
+
 
 // const data = [
 //   {
@@ -39,6 +42,7 @@ const HomeScreen = () => {
   const [listaLivros, setListaLivros] = useState<livro[]>([]);
 
   const buscarLivro = async () => {
+
     setLoading(true);
     try {
       const livrosApi = await getLivro();
@@ -46,15 +50,20 @@ const HomeScreen = () => {
     } catch (err) {
       Alert.alert("Erro ao achar livro");
     }
-    useEffect(() => {
-      buscarLivro();
-    }, []);
+   
+    finally{
+      setLoading(false);
+    }
   };
+  useEffect(() => {
+    buscarLivro();
+  }, []);
 
   return (
     <View style={styles.container}>
       <Header />
       <Hero />
+      <Loading visible={loading} />
       <FlatList
         data={listaLivros}
         numColumns={2}

@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import axios from "axios";
 import stylesAdicionar from "./stylesAdicionar"; // Importação do arquivo de estilos
+import Loading  from "../../components/Loading/loading"; // importação Loading
+
 
 const AdicionarLivrosScreen = () => {
   const [titulo, setTitulo] = useState<string>("");
@@ -18,6 +20,7 @@ const AdicionarLivrosScreen = () => {
   const [imagem, setImagem] = useState<string>("");
   const [categoria, setCategoria] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false)
   const URL = "https://673f701ba9bc276ec4b891d5.mockapi.io/api/livros";
 
   const handleAddLivro = async () => {
@@ -25,8 +28,9 @@ const AdicionarLivrosScreen = () => {
       setError("Por favor, preencha todos os campos.");
       return;
     }
-
+    setLoading(true);
     try {
+  
       const response = await axios.post(URL, { titulo, autor, descricao, valor, quantidade, imagem, categoria });
       Alert.alert("Sucesso", "Livro adicionado com sucesso!");
       setTitulo("");
@@ -39,6 +43,8 @@ const AdicionarLivrosScreen = () => {
       setError(null);
     } catch (error) {
       Alert.alert("Erro", "Não foi possível adicionar o livro.");
+    } finally{
+      setLoading(false);
     }
   };
 
@@ -91,6 +97,7 @@ const AdicionarLivrosScreen = () => {
       <TouchableOpacity style={stylesAdicionar.button} onPress={handleAddLivro}>
         <Text style={stylesAdicionar.buttonText}>Adicionar Livro</Text>
       </TouchableOpacity>
+      <Loading visible={loading} />
     </View>
   );
 };

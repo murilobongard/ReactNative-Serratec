@@ -11,6 +11,8 @@ import {
 import axios from "axios";
 import { livro } from "../../types/types";
 import styles from "./stylesEditarLivros";
+import Loading  from "../../components/Loading/loading"; // importação Loading
+
 
 const GerenciarLivrosScreen: React.FC = () => {
   const [livros, setLivros] = useState<livro[]>([]);
@@ -23,28 +25,33 @@ const GerenciarLivrosScreen: React.FC = () => {
   const [imagem, setImagem] = useState("");
   const [categoria, setCategoria] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const URL = "https://673f701ba9bc276ec4b891d5.mockapi.io/api/livros";
+  const [loading, setLoading] = useState(false)
 
+  const URL = "https://673f701ba9bc276ec4b891d5.mockapi.io/api/livros";
+  
   useEffect(() => {
     fetchLivros();
   }, []);
 
+  
   const fetchLivros = async () => {
     try {
       const response = await axios.get<livro[]>(URL);
       setLivros(response.data);
     } catch (error) {
       Alert.alert("Erro", "Não foi possível carregar os livros.");
-    }
+    } 
   };
-
   const handleDeleteLivro = async (id: number) => {
+    setLoading(true);
     try {
       await axios.delete(`${URL}/${id}`);
       setLivros(livros.filter((livro) => livro.id !== id));
       Alert.alert("Sucesso", "Livro deletado com sucesso!");
     } catch (error) {
       Alert.alert("Erro", "Não foi possível deletar o livro.");
+    } finally{
+      setLoading(false);
     }
   };
 
@@ -66,7 +73,7 @@ const GerenciarLivrosScreen: React.FC = () => {
       setError("Por favor, preencha todos os campos.");
       return;
     }
-
+    setLoading(true);
     try {
       const response = await axios.put<livro>(`${URL}/${editando.id}`, {
         titulo,
@@ -90,6 +97,8 @@ const GerenciarLivrosScreen: React.FC = () => {
       Alert.alert("Sucesso", "Livro atualizado com sucesso!");
     } catch (error) {
       Alert.alert("Erro", "Não foi possível atualizar o livro.");
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -146,6 +155,7 @@ const GerenciarLivrosScreen: React.FC = () => {
           <TouchableOpacity style={styles.button} onPress={handleUpdateLivro}>
             <Text style={styles.buttonText}>Atualizar Livro</Text>
           </TouchableOpacity>
+          <Loading visible={loading} />
         </View>
       )}
       <FlatList
@@ -155,11 +165,11 @@ const GerenciarLivrosScreen: React.FC = () => {
           <View style={styles.item}>
             <Image source={{ uri: item.imagem }} style={styles.itemImage} />
             <Text style={styles.itemTitle}>{item.titulo}</Text>
-            <Text>{item.autor}</Text>
-            <Text>{item.descricao}</Text>
-            <Text>R$ {item.valor}</Text>
-            <Text>Quantidade: {item.quantidade}</Text>
-            <Text>Categoria: {item.categoria}</Text>
+            <Text style={styles.text}>{item.autor}</Text>
+            <Text style={styles.text}>{item.descricao}</Text>
+            <Text style={styles.text}>R$ {item.valor}</Text>
+            <Text style={styles.text}>Quantidade: {item.quantidade}</Text>
+            <Text style={styles.text}>Categoria: {item.categoria}</Text>
             <TouchableOpacity style={styles.editButton} onPress={() => handleEditLivro(item)}>
               <Text style={styles.buttonText}>Editar</Text>
             </TouchableOpacity>
@@ -169,6 +179,7 @@ const GerenciarLivrosScreen: React.FC = () => {
           </View>
         )}
       />
+      <Loading visible={loading} />
     </View>
   );
 };

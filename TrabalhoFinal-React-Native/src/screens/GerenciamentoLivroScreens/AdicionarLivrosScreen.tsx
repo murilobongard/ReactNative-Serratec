@@ -5,10 +5,12 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
+  Platform,
 } from "react-native";
 import axios from "axios";
 import stylesAdicionar from "./stylesAdicionar"; 
 import Loading  from "../../components/loading/Loading";
+import { KeyboardAvoidingView } from "react-native";
 
 
 const AdicionarLivrosScreen = () => {
@@ -49,7 +51,8 @@ const AdicionarLivrosScreen = () => {
   };
 
   return (
-    <View style={stylesAdicionar.container}>
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" :"height"}
+      style={stylesAdicionar.container}>
       <Text style={stylesAdicionar.titulo}>Adicionar Livro</Text>
       {error ? <Text style={stylesAdicionar.errorText}>{error}</Text> : null}
       <TextInput
@@ -98,8 +101,8 @@ const AdicionarLivrosScreen = () => {
         <Text style={stylesAdicionar.buttonText}>Adicionar Livro</Text>
       </TouchableOpacity>
       <Loading visible={loading} />
-    </View>
-  );
+      </KeyboardAvoidingView>  
+      );
 };
 
 export default AdicionarLivrosScreen;

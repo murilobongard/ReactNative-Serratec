@@ -7,6 +7,8 @@ import {
   StyleSheet,
   Alert,
   Image,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -59,7 +61,8 @@ const LoginScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" :"height"}
+      style={styles.container}>
       <Image source={require("../../../assets/1.png")} style={styles.image} />
       <Text style={styles.titulo}>Bem-vindo</Text>
       <Text style={styles.subTitulo}>Faça login para continuar</Text>
@@ -86,7 +89,7 @@ const LoginScreen = () => {
         </Text>
       </TouchableOpacity>
       <Loading visible={loading} />
-    </View>
+      </KeyboardAvoidingView>
   );
 };
 export default LoginScreen;

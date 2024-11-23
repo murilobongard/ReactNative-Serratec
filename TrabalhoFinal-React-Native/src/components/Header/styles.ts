@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   textWhite: {
     color: "#fff",
-    letterSpacing: 0,
+    letterSpacing: 1,
   },
   header: {
     position: "absolute",

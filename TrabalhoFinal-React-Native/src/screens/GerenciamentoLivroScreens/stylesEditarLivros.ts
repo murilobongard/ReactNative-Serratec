@@ -51,16 +51,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   itemTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
-    color: "rgb(255, 255, 255)",
   },
   text: {
     fontSize: 14,
-    fontWeight: "bold",
-    color: "rgb(220, 136, 244)",
+    color: "black",
   },
-
+  textAutor:{
+    color:"#504F4F",
+    fontSize: 13,
+  },
   itemImage: {
     width: 100,
     height: 150,

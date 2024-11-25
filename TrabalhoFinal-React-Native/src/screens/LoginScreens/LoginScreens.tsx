@@ -59,8 +59,8 @@ const LoginScreen = () => {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
+    behavior="padding" keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
+    style={styles.container}
     >
       <Image source={require("../../../assets/1.png")} style={styles.image} />
       <Text style={styles.titulo}>Bem-vindo</Text>

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamList } from "../../types/navigation";
@@ -18,6 +18,8 @@ const GerenciamentoScreen = () => {
     <>
       <Header />
       <View style={stylesGerenciamento.container}>
+      <Image source={require("../../../assets/2.png")} style={stylesGerenciamento.image} />
+
         <Text style={stylesGerenciamento.titulo}>Gerenciamento</Text>
         <TouchableOpacity
           style={stylesGerenciamento.button}

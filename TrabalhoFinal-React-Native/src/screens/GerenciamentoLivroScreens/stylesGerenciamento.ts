@@ -3,9 +3,14 @@ import { StyleSheet } from "react-native";
 const stylesGerenciamento = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#111111",
+    backgroundColor: "#ffffff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  image: {
+    width: "100%",
+    height: 150,
+    resizeMode: "contain",
   },
   titulo: {
     marginTop: 30,

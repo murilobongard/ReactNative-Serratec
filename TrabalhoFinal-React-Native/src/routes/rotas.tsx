@@ -78,20 +78,20 @@ const TabNavigator = () => {
 
 export const Rotas = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName="Login">
       <Stack.Screen
         name="Home"
         component={TabNavigator}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="Cadastro"
-        component={CadastroScreens}
+        name="Login"
+        component={LoginScreens}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="Login"
-        component={LoginScreens}
+        name="Cadastro"
+        component={CadastroScreens}
         options={{ headerShown: false }}
       />
       <Stack.Screen
@@ -114,7 +114,6 @@ export const Rotas = () => {
         component={TimeScreen}
         options={{ headerShown: false }}
       />
-
     </Stack.Navigator>
   );
 };

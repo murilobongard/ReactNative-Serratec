@@ -11,11 +11,14 @@ import {
 } from "react-native";
 import { livro } from "../../types/types";
 import styles from "./stylesEditarLivros";
-import Loading  from "../../components/loading/Loading";
+import Loading from "../../components/loading/Loading";
 import api from "../../service/api";
-import { deleteLivro, getLivro } from "../../service/LivrosService";
+import {
+  deleteLivro,
+  getLivro,
+  updateLivro,
+} from "../../service/LivrosService";
 import { KeyboardAvoidingView } from "react-native";
-
 
 const GerenciarLivrosScreen: React.FC = () => {
   const [livros, setLivros] = useState<livro[]>([]);
@@ -28,9 +31,9 @@ const GerenciarLivrosScreen: React.FC = () => {
   const [imagem, setImagem] = useState("");
   const [categoria, setCategoria] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   // const URL = "https://673fb001a9bc276ec4b95164.mockapi.io/Api/livros";
-  
+
   useEffect(() => {
     fetchLivros();
   }, []);
@@ -41,7 +44,7 @@ const GerenciarLivrosScreen: React.FC = () => {
       setLivros(response);
     } catch (error) {
       Alert.alert("Erro", "Não foi possível carregar os livros.");
-    } 
+    }
   };
   const handleDeleteLivro = async (id: number) => {
     setLoading(true);
@@ -51,7 +54,7 @@ const GerenciarLivrosScreen: React.FC = () => {
       Alert.alert("Sucesso", "Livro deletado com sucesso!");
     } catch (error) {
       Alert.alert("Erro", "Não foi possível deletar o livro.");
-    } finally{
+    } finally {
       setLoading(false);
     }
   };
@@ -70,13 +73,21 @@ const GerenciarLivrosScreen: React.FC = () => {
   const handleUpdateLivro = async () => {
     if (!editando) return;
 
-    if (!titulo || !autor || !descricao || !valor || !quantidade || !imagem || !categoria) {
+    if (
+      !titulo ||
+      !autor ||
+      !descricao ||
+      !valor ||
+      !quantidade ||
+      !imagem ||
+      !categoria
+    ) {
       setError("Por favor, preencha todos os campos.");
       return;
     }
     setLoading(true);
     try {
-      const response = await api.put<livro>(`${"/"}/${editando.id}`, {
+      const response = await api.put<livro>(`/Livros/${editando.id}`, {
         titulo,
         autor,
         descricao,
@@ -85,11 +96,16 @@ const GerenciarLivrosScreen: React.FC = () => {
         imagem,
         categoria,
       });
+      setLivros((prevLivros) =>
+        prevLivros.map((livro) =>
+          livro.id === editando.id ? response.data : livro
+        )
+      );
       fetchLivros();
-      Alert.alert("Sucesso", "Livro adicionado com sucesso!");
+      Alert.alert("Sucesso", "Livro atualizado com sucesso!");
     } catch (error) {
       Alert.alert("Erro", "Não foi possível atualizar o livro.");
-    }finally{
+    } finally {
       setEditando(null);
       setTitulo("");
       setAutor("");
@@ -104,8 +120,10 @@ const GerenciarLivrosScreen: React.FC = () => {
   };
 
   return (
-   <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" :"height"}
-      style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <Text style={styles.title}>Gerenciar Livros</Text>
       {error ? <Text style={styles.error}>{error}</Text> : null}
       {editando ? (
@@ -159,36 +177,45 @@ const GerenciarLivrosScreen: React.FC = () => {
           </TouchableOpacity>
           <Loading visible={loading} />
 
-          <TouchableOpacity style={styles.button} onPress={() => setEditando(null)}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => setEditando(null)}
+          >
             <Text style={styles.buttonText}>Cancelar Edição</Text>
           </TouchableOpacity>
           <Loading visible={loading} />
         </View>
-      ): (
-      <FlatList
-        data={livros}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.item}>
-            <Image source={{ uri: item.imagem }} style={styles.itemImage} />
-            <Text style={styles.itemTitle}>{item.titulo}</Text>
-            <Text style={styles.text}>{item.autor}</Text>
-            <Text style={styles.text}>{item.descricao}</Text>
-            <Text style={styles.text}>R$ {item.valor}</Text>
-            <Text style={styles.text}>Quantidade: {item.quantidade}</Text>
-            <Text style={styles.text}>Categoria: {item.categoria}</Text>
-            <TouchableOpacity style={styles.editButton} onPress={() => handleEditLivro(item)}>
-              <Text style={styles.buttonText}>Editar</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteLivro(item.id)}>
-              <Text style={styles.buttonText}>Deletar</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-      />
+      ) : (
+        <FlatList
+          data={livros}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <View style={styles.item}>
+              <Image source={{ uri: item.imagem }} style={styles.itemImage} />
+              <Text style={styles.itemTitle}>{item.titulo}</Text>
+              <Text style={styles.text}>{item.autor}</Text>
+              <Text style={styles.text}>{item.descricao}</Text>
+              <Text style={styles.text}>R$ {item.valor}</Text>
+              <Text style={styles.text}>Quantidade: {item.quantidade}</Text>
+              <Text style={styles.text}>Categoria: {item.categoria}</Text>
+              <TouchableOpacity
+                style={styles.editButton}
+                onPress={() => handleEditLivro(item)}
+              >
+                <Text style={styles.buttonText}>Editar</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.deleteButton}
+                onPress={() => handleDeleteLivro(item.id)}
+              >
+                <Text style={styles.buttonText}>Deletar</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        />
       )}
       <Loading visible={loading} />
-      </KeyboardAvoidingView> 
+    </KeyboardAvoidingView>
   );
 };
 

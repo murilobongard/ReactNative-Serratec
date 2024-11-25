@@ -24,42 +24,37 @@ const CadastroScreen = () => {
 
   const Cadastro = async () => {
     if (!nome || !email || !senha) {
-      Alert.alert("Erro, Por favor, preencha todos os campos.");
+      Alert.alert("Erro", "Por favor, preencha todos os campos.");
       return;
     }
 
-    Alert.alert(
-      "Confirmação",
-      "Você deseja realizar o cadastro?",
+    Alert.alert("Confirmação", "Você deseja realizar o cadastro?", [
+      { text: "Cancelar", style: "cancel" },
+      {
+        text: "Ok",
+        onPress: async () => {
+          setLoading(true);
+          try {
+            const userData = { nome, email, senha };
+            const response = await axios.post(URL, userData);
 
-      [
-        { text: "Cancelar", style: "cancel" },
-        {
-          text: "Ok",
-          onPress: async () => {
-            setLoading(true);
-            try {
-              const userData = { nome, email, senha };
-              const response = await axios.post(URL, userData);
-
-              if (response.status === 201) {
-                setMessage("Cadastro realizado com sucesso!");
-              } else {
-                setMessage("Erro ao cadastrar. Verifique os dados.");
-              }
-            } catch (error: any) {
-              if (error.response) {
-                setMessage(error.response.data.message || "Erro no cadastro.");
-              } else {
-                setMessage("Erro na comunicação com o servidor.");
-              }
-            } finally {
-              setLoading(false);
+            if (response.status === 201) {
+              setMessage("Cadastro realizado com sucesso!");
+            } else {
+              setMessage("Erro ao cadastrar. Verifique os dados.");
             }
-          },
+          } catch (error: any) {
+            if (error.response) {
+              setMessage(error.response.data.message || "Erro no cadastro.");
+            } else {
+              setMessage("Erro na comunicação com o servidor.");
+            }
+          } finally {
+            setLoading(false);
+          }
         },
-      ]
-    );
+      },
+    ]);
   };
 
   return (

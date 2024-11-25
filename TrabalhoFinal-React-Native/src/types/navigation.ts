@@ -1,7 +1,7 @@
 export type StackParamList = {
   Home: undefined;
-  Cadastro: undefined;
   Login: undefined;
+  Cadastro: undefined;
   Gerenciamento: undefined;
   AdicionarLivros: undefined;
   GerenciarLivros: undefined;

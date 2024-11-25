@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import {
-  View,
   Text,
   TextInput,
   TouchableOpacity,
   Alert,
   Platform,
 } from "react-native";
-import axios from "axios";
 import stylesAdicionar from "./stylesAdicionar"; 
 import Loading  from "../../components/loading/Loading";
 import { KeyboardAvoidingView } from "react-native";
+import { createLivro } from "../../service/LivrosService";
 
-
-const AdicionarLivrosScreen = () => {
+const AdicionarLivrosScreen = ({ navigation }: { navigation: any }) => {
   const [titulo, setTitulo] = useState<string>("");
   const [autor, setAutor] = useState<string>("");
   const [descricao, setDescricao] = useState<string>("");
@@ -23,7 +21,7 @@ const AdicionarLivrosScreen = () => {
   const [categoria, setCategoria] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false)
-  const URL = "https://673f701ba9bc276ec4b891d5.mockapi.io/api/livros";
+  // const URL = "https://673fb001a9bc276ec4b95164.mockapi.io/Api/livros";
 
   const handleAddLivro = async () => {
     if (!titulo || !autor || !descricao || !valor || !quantidade || !imagem || !categoria) {
@@ -32,8 +30,8 @@ const AdicionarLivrosScreen = () => {
     }
     setLoading(true);
     try {
-  
-      const response = await axios.post(URL, { titulo, autor, descricao, valor, quantidade, imagem, categoria });
+      const novoLivro = { titulo, autor, descricao, valor: Number(valor), quantidade: Number(quantidade), imagem, categoria };
+      await createLivro(novoLivro);
       Alert.alert("Sucesso", "Livro adicionado com sucesso!");
       setTitulo("");
       setAutor("");
@@ -43,6 +41,7 @@ const AdicionarLivrosScreen = () => {
       setImagem("");
       setCategoria("");
       setError(null);
+      navigation.navigate("Home");
     } catch (error) {
       Alert.alert("Erro", "Não foi possível adicionar o livro.");
     } finally{

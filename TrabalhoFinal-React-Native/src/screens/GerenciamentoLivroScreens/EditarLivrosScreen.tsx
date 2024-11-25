@@ -8,10 +8,11 @@ import {
   TextInput,
   Image,
 } from "react-native";
-import axios from "axios";
 import { livro } from "../../types/types";
 import styles from "./stylesEditarLivros";
 import Loading  from "../../components/loading/Loading";
+import api from "../../service/api";
+import { getLivro } from "../../service/LivrosService";
 
 
 const GerenciarLivrosScreen: React.FC = () => {
@@ -26,17 +27,16 @@ const GerenciarLivrosScreen: React.FC = () => {
   const [categoria, setCategoria] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false)
-  const URL = "https://673f701ba9bc276ec4b891d5.mockapi.io/api/livros";
+  // const URL = "https://673fb001a9bc276ec4b95164.mockapi.io/Api/livros";
   
   useEffect(() => {
     fetchLivros();
   }, []);
 
-  
   const fetchLivros = async () => {
     try {
-      const response = await axios.get<livro[]>(URL);
-      setLivros(response.data);
+      const response = await getLivro();
+      setLivros(response);
     } catch (error) {
       Alert.alert("Erro", "Não foi possível carregar os livros.");
     } 
@@ -44,8 +44,9 @@ const GerenciarLivrosScreen: React.FC = () => {
   const handleDeleteLivro = async (id: number) => {
     setLoading(true);
     try {
-      await axios.delete(`${URL}/${id}`);
-      setLivros(livros.filter((livro) => livro.id !== id));
+      await api.delete(`/${id}`);
+      fetchLivros();
+      // setLivros(livros.filter((livro) => livro.id !== id));
       Alert.alert("Sucesso", "Livro deletado com sucesso!");
     } catch (error) {
       Alert.alert("Erro", "Não foi possível deletar o livro.");
@@ -74,7 +75,7 @@ const GerenciarLivrosScreen: React.FC = () => {
     }
     setLoading(true);
     try {
-      const response = await axios.put<livro>(`${URL}/${editando.id}`, {
+      const response = await api.put<livro>(`${"/"}/${editando.id}`, {
         titulo,
         autor,
         descricao,
@@ -83,7 +84,11 @@ const GerenciarLivrosScreen: React.FC = () => {
         imagem,
         categoria,
       });
-      setLivros(livros.map((livro) => (livro.id === editando.id ? response.data : livro)));
+      fetchLivros();
+      Alert.alert("Sucesso", "Livro adicionado com sucesso!");
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possível atualizar o livro.");
+    }finally{
       setEditando(null);
       setTitulo("");
       setAutor("");
@@ -93,10 +98,6 @@ const GerenciarLivrosScreen: React.FC = () => {
       setImagem("");
       setCategoria("");
       setError(null);
-      Alert.alert("Sucesso", "Livro atualizado com sucesso!");
-    } catch (error) {
-      Alert.alert("Erro", "Não foi possível atualizar o livro.");
-    }finally{
       setLoading(false);
     }
   };
@@ -153,6 +154,11 @@ const GerenciarLivrosScreen: React.FC = () => {
           />
           <TouchableOpacity style={styles.button} onPress={handleUpdateLivro}>
             <Text style={styles.buttonText}>Atualizar Livro</Text>
+          </TouchableOpacity>
+          <Loading visible={loading} />
+
+          <TouchableOpacity style={styles.button} onPress={() => setEditando(null)}>
+            <Text style={styles.buttonText}>Cancelar Edição</Text>
           </TouchableOpacity>
           <Loading visible={loading} />
         </View>

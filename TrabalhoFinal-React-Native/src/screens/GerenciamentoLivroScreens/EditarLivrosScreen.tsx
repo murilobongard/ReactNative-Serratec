@@ -105,7 +105,7 @@ const GerenciarLivrosScreen: React.FC = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Gerenciar Livros</Text>
       {error ? <Text style={styles.error}>{error}</Text> : null}
-      {editando && (
+      {editando ? (
         <View style={styles.form}>
           <TextInput
             style={styles.input}
@@ -161,7 +161,7 @@ const GerenciarLivrosScreen: React.FC = () => {
           </TouchableOpacity>
           <Loading visible={loading} />
         </View>
-      )}
+      ): (
       <FlatList
         data={livros}
         keyExtractor={(item) => item.id.toString()}
@@ -183,6 +183,7 @@ const GerenciarLivrosScreen: React.FC = () => {
           </View>
         )}
       />
+      )}
       <Loading visible={loading} />
     </View>
   );

@@ -76,7 +76,7 @@ const GerenciarLivrosScreen: React.FC = () => {
     }
     setLoading(true);
     try {
-      const response = await api.put<livro>(`${"/"}/${editando.id}`, {
+      const response = await api.put<livro>(`/Livros/${editando.id}`, {
         titulo,
         autor,
         descricao,
@@ -85,8 +85,13 @@ const GerenciarLivrosScreen: React.FC = () => {
         imagem,
         categoria,
       });
+      setLivros((prevLivros) =>
+        prevLivros.map((livro) =>
+          livro.id === editando.id ? response.data : livro
+        )
+      );
       fetchLivros();
-      Alert.alert("Sucesso", "Livro adicionado com sucesso!");
+      Alert.alert("Sucesso", "Livro atualizado com sucesso!");
     } catch (error) {
       Alert.alert("Erro", "Não foi possível atualizar o livro.");
     }finally{
@@ -104,8 +109,10 @@ const GerenciarLivrosScreen: React.FC = () => {
   };
 
   return (
-   <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" :"height"}
-      style={styles.container}>
+    <KeyboardAvoidingView
+    behavior={Platform.OS === "ios" ? "padding" : "height"}
+    style={styles.container}
+  >
       <Text style={styles.title}>Gerenciar Livros</Text>
       {error ? <Text style={styles.error}>{error}</Text> : null}
       {editando ? (
@@ -164,28 +171,34 @@ const GerenciarLivrosScreen: React.FC = () => {
           </TouchableOpacity>
           <Loading visible={loading} />
         </View>
-      ): (
-      <FlatList
-        data={livros}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.item}>
-            <Image source={{ uri: item.imagem }} style={styles.itemImage} />
-            <Text style={styles.itemTitle}>{item.titulo}</Text>
-            <Text style={styles.textAutor}>{item.autor}</Text>
-            <Text style={styles.text}>{item.descricao}</Text>
-            <Text style={styles.text}>R$ {item.valor}</Text>
-            <Text style={styles.text}>Quantidade: {item.quantidade}</Text>
-            <Text style={styles.text}>Categoria: {item.categoria}</Text>
-            <TouchableOpacity style={styles.editButton} onPress={() => handleEditLivro(item)}>
-              <Text style={styles.buttonText}>Editar</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteLivro(item.id)}>
-              <Text style={styles.buttonText}>Deletar</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-      />
+         ) : (
+          <FlatList
+            data={livros}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <View style={styles.item}>
+                <Image source={{ uri: item.imagem }} style={styles.itemImage} />
+                <Text style={styles.itemTitle}>{item.titulo}</Text>
+                <Text style={styles.text}>{item.autor}</Text>
+                <Text style={styles.text}>{item.descricao}</Text>
+                <Text style={styles.text}>R$ {item.valor}</Text>
+                <Text style={styles.text}>Quantidade: {item.quantidade}</Text>
+                <Text style={styles.text}>Categoria: {item.categoria}</Text>
+                <TouchableOpacity
+                  style={styles.editButton}
+                  onPress={() => handleEditLivro(item)}
+                >
+                  <Text style={styles.buttonText}>Editar</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.deleteButton}
+                  onPress={() => handleDeleteLivro(item.id)}
+                >
+                  <Text style={styles.buttonText}>Deletar</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          />
       )}
       <Loading visible={loading} />
       </KeyboardAvoidingView> 

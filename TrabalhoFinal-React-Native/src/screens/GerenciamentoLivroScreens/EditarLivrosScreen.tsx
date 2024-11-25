@@ -12,7 +12,7 @@ import { livro } from "../../types/types";
 import styles from "./stylesEditarLivros";
 import Loading  from "../../components/loading/Loading";
 import api from "../../service/api";
-import { getLivro } from "../../service/LivrosService";
+import { deleteLivro, getLivro } from "../../service/LivrosService";
 
 
 const GerenciarLivrosScreen: React.FC = () => {
@@ -44,9 +44,8 @@ const GerenciarLivrosScreen: React.FC = () => {
   const handleDeleteLivro = async (id: number) => {
     setLoading(true);
     try {
-      await api.delete(`/${id}`);
-      fetchLivros();
-      // setLivros(livros.filter((livro) => livro.id !== id));
+      await deleteLivro(id);
+      setLivros(livros.filter((livro) => livro.id !== id));
       Alert.alert("Sucesso", "Livro deletado com sucesso!");
     } catch (error) {
       Alert.alert("Erro", "Não foi possível deletar o livro.");

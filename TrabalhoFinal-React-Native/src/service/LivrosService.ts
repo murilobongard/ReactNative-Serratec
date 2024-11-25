@@ -12,9 +12,8 @@ export const createLivro = async (
   return data;
 };
 
-export const deleteLivro = async (id: number): Promise<livro> => {
-  const { data } = await api.delete<livro>("/Livros/" + id);
-  return data;
+export const deleteLivro = async (id: number): Promise<void> => {
+  await api.delete(`/Livros/${id}`);
 };
 
 export const updateLivro = async (

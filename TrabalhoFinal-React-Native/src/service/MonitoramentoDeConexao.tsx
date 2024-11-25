@@ -6,7 +6,7 @@ const MonitoramentoDeConexao: React.FC = () => {
   const [isConnected, setIsConnected] = useState<boolean>(true);
 
   useEffect(() => {
-    const unsubscribe = NetInfo.addEventListener(state => {
+    const unsubscribe = NetInfo.addEventListener((state) => {
       setIsConnected(state.isConnected ?? false);
     });
 
@@ -17,13 +17,14 @@ const MonitoramentoDeConexao: React.FC = () => {
 
   useEffect(() => {
     if (!isConnected) {
-      Alert.alert("Sem Conexão", "Você está offline. Verifique sua conexão com a internet.");
+      Alert.alert(
+        "Sem Conexão",
+        "Você está offline. Verifique sua conexão com a internet."
+      );
     }
   }, [isConnected]);
 
-  return (
-    <></>
-  );
+  return <></>;
 };
 
 export default MonitoramentoDeConexao;

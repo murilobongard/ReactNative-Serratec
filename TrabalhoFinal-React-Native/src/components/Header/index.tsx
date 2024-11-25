@@ -8,7 +8,7 @@ import { StackParamList } from "../../types/navigation";
 
 type NavigationProps = NativeStackNavigationProp<StackParamList>;
 
-const Header: React.FC = () => {
+const Header = () => {
   const navigation = useNavigation<NavigationProps>();
 
   return (
@@ -17,9 +17,10 @@ const Header: React.FC = () => {
       style={styles.header}
     >
       <View style={styles.headerSafeAreaView}>
-          <Image
-            source={require("../../../assets/3.png")}
-            style={{ width: 100, height: 90, resizeMode: "contain" }}/>
+        <Image
+          source={require("../../../assets/3.png")}
+          style={{ width: 100, height: 90, resizeMode: "contain" }}
+        />
         <TouchableOpacity onPress={() => navigation.navigate("TimeTab")}>
           <Text style={styles.textWhite}>Time</Text>
         </TouchableOpacity>
@@ -29,7 +30,6 @@ const Header: React.FC = () => {
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Text style={styles.textWhite}>Login</Text>
         </TouchableOpacity>
-       
       </View>
     </LinearGradient>
   );

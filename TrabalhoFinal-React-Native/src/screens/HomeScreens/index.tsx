@@ -8,7 +8,7 @@ import {
   TextInput,
   Modal,
   Button,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import Header from "../../components/Header";
 import Hero from "../../components/Hero";
@@ -16,7 +16,6 @@ import styles from "./styles";
 import { livro } from "../../types/types";
 import { Alert } from "react-native";
 import { getLivro } from "../../service/LivrosService";
-//import { buscarLivro } from "../../service/LivrosService";
 import Loading from "../../components/loading/Loading";
 
 const livrosMaisVendidos = [
@@ -52,7 +51,6 @@ const HomeScreen = () => {
 
   const [modal, setModal] = useState(false);
   const [itemSelecionado, setItemSelecionado] = useState<livro | null>(null);
-
 
   const buscarLivro = async () => {
     setLoading(true);
@@ -98,11 +96,11 @@ const HomeScreen = () => {
       <Hero />
       <Loading visible={loading} />
       <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.input}
-        placeholder={"Pesquisar"}
-        onChangeText={(s) => search(s)}
-      />
+        <TextInput
+          style={styles.input}
+          placeholder={"Pesquisar"}
+          onChangeText={(s) => search(s)}
+        />
       </View>
       <FlatList
         data={listaLivros}
@@ -163,33 +161,35 @@ const HomeScreen = () => {
         >
           <View style={styles.principal}>
             <View style={styles.modalContainer}>
-            <ScrollView contentContainerStyle={styles.scrollViewContent}   showsVerticalScrollIndicator={true}>
-              {/* {" "} */}
-              {itemSelecionado.imagem && (
-                <Image
-                  source={{ uri: itemSelecionado.imagem }}
-                  style={styles.modalImagem}
-                />
-              )}
-              <Text style={styles.modalTitulo}>{itemSelecionado.titulo}</Text>
-              <Text style={styles.modalAutor}>
-                Autor: {itemSelecionado.autor}
-              </Text>
-              <Text style={styles.modalCategoria}>
-                {" "}
-                Categoria: {itemSelecionado.categoria}
-              </Text>
-              <Text style={styles.modalDescricao}>
-                {itemSelecionado.descricao}
-              </Text>
-              {itemSelecionado.valor !== undefined ? (
-                <Text style={styles.modalPreco}>
-                  Preço: R$ {itemSelecionado.valor.toFixed(2)}
+              <ScrollView
+                contentContainerStyle={styles.scrollViewContent}
+                showsVerticalScrollIndicator={true}
+              >
+                {itemSelecionado.imagem && (
+                  <Image
+                    source={{ uri: itemSelecionado.imagem }}
+                    style={styles.modalImagem}
+                  />
+                )}
+                <Text style={styles.modalTitulo}>{itemSelecionado.titulo}</Text>
+                <Text style={styles.modalAutor}>
+                  Autor: {itemSelecionado.autor}
                 </Text>
-              ) : (
-                <Text style={styles.modalPreco}>Preço: Não disponível</Text>
-              )}
-              <Button title="Fechar" onPress={fecharModalLivro} />
+                <Text style={styles.modalCategoria}>
+                  {" "}
+                  Categoria: {itemSelecionado.categoria}
+                </Text>
+                <Text style={styles.modalDescricao}>
+                  {itemSelecionado.descricao}
+                </Text>
+                {itemSelecionado.valor !== undefined ? (
+                  <Text style={styles.modalPreco}>
+                    Preço: R$ {itemSelecionado.valor.toFixed(2)}
+                  </Text>
+                ) : (
+                  <Text style={styles.modalPreco}>Preço: Não disponível</Text>
+                )}
+                <Button title="Fechar" onPress={fecharModalLivro} />
               </ScrollView>
             </View>
           </View>

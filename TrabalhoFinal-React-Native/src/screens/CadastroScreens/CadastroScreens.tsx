@@ -11,8 +11,7 @@ import {
 } from "react-native";
 import axios from "axios";
 import Loading from "../../components/loading/Loading";
-import styles from "../CadastroScreens/CadastroScreensStyles"
-import { ScrollView } from "react-native";
+import styles from "../CadastroScreens/CadastroScreensStyles";
 
 const CadastroScreen = () => {
   const [nome, setNome] = useState("");
@@ -64,8 +63,10 @@ const CadastroScreen = () => {
   };
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" :"height"}
-    style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <Image source={require("../../../assets/3.png")} style={styles.image} />
       <Text style={styles.titulo}>Cadastre-se</Text>
       <Text style={styles.subTitulo}>Crie sua conta para continuar</Text>
@@ -94,11 +95,8 @@ const CadastroScreen = () => {
       </TouchableOpacity>
       {message ? <Text style={styles.message}>{message}</Text> : null}
       <Loading visible={loading} />
-      </KeyboardAvoidingView>
-    
+    </KeyboardAvoidingView>
   );
 };
-
-
 
 export default CadastroScreen;

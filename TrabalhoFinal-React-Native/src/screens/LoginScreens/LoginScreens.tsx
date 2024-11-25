@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import {
-  View,
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
   Alert,
   Image,
   KeyboardAvoidingView,
@@ -14,9 +12,8 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamList } from "../../types/navigation";
 import axios from "axios";
-import CadastroScreen from "../CadastroScreens/CadastroScreens";
 import styles from "./LoginStyles";
-import Loading from "../../components/loading/Loading"; // importação Loading
+import Loading from "../../components/loading/Loading";
 
 type NavigationProps = NativeStackNavigationProp<StackParamList>;
 
@@ -61,8 +58,10 @@ const LoginScreen = () => {
   };
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" :"height"}
-      style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <Image source={require("../../../assets/1.png")} style={styles.image} />
       <Text style={styles.titulo}>Bem-vindo</Text>
       <Text style={styles.subTitulo}>Faça login para continuar</Text>
@@ -89,7 +88,7 @@ const LoginScreen = () => {
         </Text>
       </TouchableOpacity>
       <Loading visible={loading} />
-      </KeyboardAvoidingView>
+    </KeyboardAvoidingView>
   );
 };
 export default LoginScreen;

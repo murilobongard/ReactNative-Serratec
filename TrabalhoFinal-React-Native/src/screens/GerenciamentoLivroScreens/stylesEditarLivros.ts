@@ -5,12 +5,16 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: "#000000",
+    justifyContent:"center",
+    alignItems:"center"
+    
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
     color: "rgb(196, 2, 255)",
+    marginTop:40,
   },
   error: {
     color: "red",
@@ -29,9 +33,10 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#8A2BE2",
-    padding: 10,
+    padding: 15,
     borderRadius: 5,
     alignItems: "center",
+    marginTop:10
   },
   buttonText: {
     color: "#fff",

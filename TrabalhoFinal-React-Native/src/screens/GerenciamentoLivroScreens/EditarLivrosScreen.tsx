@@ -7,12 +7,14 @@ import {
   FlatList,
   TextInput,
   Image,
+  Platform,
 } from "react-native";
 import { livro } from "../../types/types";
 import styles from "./stylesEditarLivros";
 import Loading  from "../../components/loading/Loading";
 import api from "../../service/api";
 import { deleteLivro, getLivro } from "../../service/LivrosService";
+import { KeyboardAvoidingView } from "react-native";
 
 
 const GerenciarLivrosScreen: React.FC = () => {
@@ -102,7 +104,8 @@ const GerenciarLivrosScreen: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
+   <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" :"height"}
+      style={styles.container}>
       <Text style={styles.title}>Gerenciar Livros</Text>
       {error ? <Text style={styles.error}>{error}</Text> : null}
       {editando ? (
@@ -185,7 +188,7 @@ const GerenciarLivrosScreen: React.FC = () => {
       />
       )}
       <Loading visible={loading} />
-    </View>
+      </KeyboardAvoidingView> 
   );
 };
 
